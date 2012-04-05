@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.robotframework.text/src-gen"
+    editDirectory="/org.robotframework.text.edit/src" editorDirectory="/org.robotframework.text.editor/src"
+    modelPluginID="org.robotframework.text" forceOverwrite="true" modelName="Space"
+    updateClasspath="false" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    complianceLevel="5.0" copyrightFields="false" editPluginID="org.robotframework.text.edit"
+    editorPluginID="org.robotframework.text.editor">
+  <genPackages prefix="Space" basePackage="org.robotframework.text" disposableProviderFactory="true"
+      ecorePackage="Space.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Space.ecore#//TestCaseSettingName">
+      <genEnumLiterals ecoreEnumLiteral="Space.ecore#//TestCaseSettingName/DOCUMENTATION"/>
+      <genEnumLiterals ecoreEnumLiteral="Space.ecore#//TestCaseSettingName/TIMEOUT"/>
+      <genEnumLiterals ecoreEnumLiteral="Space.ecore#//TestCaseSettingName/SETUP"/>
+      <genEnumLiterals ecoreEnumLiteral="Space.ecore#//TestCaseSettingName/TEARDOWN"/>
+      <genEnumLiterals ecoreEnumLiteral="Space.ecore#//TestCaseSettingName/TAGS"/>
+      <genEnumLiterals ecoreEnumLiteral="Space.ecore#//TestCaseSettingName/TEMPLATE"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Space.ecore#//KeywordSettingName">
+      <genEnumLiterals ecoreEnumLiteral="Space.ecore#//KeywordSettingName/DOCUMENTATION"/>
+      <genEnumLiterals ecoreEnumLiteral="Space.ecore#//KeywordSettingName/TIMEOUT"/>
+      <genEnumLiterals ecoreEnumLiteral="Space.ecore#//KeywordSettingName/TEARDOWN"/>
+      <genEnumLiterals ecoreEnumLiteral="Space.ecore#//KeywordSettingName/ARGUMENTS"/>
+      <genEnumLiterals ecoreEnumLiteral="Space.ecore#//KeywordSettingName/RETURN"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Space.ecore#//RobotOneValueSetting">
+      <genEnumLiterals ecoreEnumLiteral="Space.ecore#//RobotOneValueSetting/DOCUMENTATION"/>
+      <genEnumLiterals ecoreEnumLiteral="Space.ecore#//RobotOneValueSetting/TEST_TIMEOUT"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Space.ecore#//RobotValuesSetting">
+      <genEnumLiterals ecoreEnumLiteral="Space.ecore#//RobotValuesSetting/FORCE_TAGS"/>
+      <genEnumLiterals ecoreEnumLiteral="Space.ecore#//RobotValuesSetting/DEFAULT_TAGS"/>
+      <genEnumLiterals ecoreEnumLiteral="Space.ecore#//RobotValuesSetting/LIBRARY_IMPORT"/>
+      <genEnumLiterals ecoreEnumLiteral="Space.ecore#//RobotValuesSetting/RESOURCE_IMPORT"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Space.ecore#//RobotStepSetting">
+      <genEnumLiterals ecoreEnumLiteral="Space.ecore#//RobotStepSetting/SUITE_SETUP"/>
+      <genEnumLiterals ecoreEnumLiteral="Space.ecore#//RobotStepSetting/SUITE_TEARDOWN"/>
+      <genEnumLiterals ecoreEnumLiteral="Space.ecore#//RobotStepSetting/TEST_SETUP"/>
+      <genEnumLiterals ecoreEnumLiteral="Space.ecore#//RobotStepSetting/TEST_TEARDOWN"/>
+    </genEnums>
+    <genClasses ecoreClass="Space.ecore#//Model">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Space.ecore#//Model/tables"/>
+    </genClasses>
+    <genClasses ecoreClass="Space.ecore#//RobotTable"/>
+    <genClasses ecoreClass="Space.ecore#//SettingsTable">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Space.ecore#//SettingsTable/settings"/>
+    </genClasses>
+    <genClasses ecoreClass="Space.ecore#//TestCaseTable">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Space.ecore#//TestCaseTable/tests"/>
+    </genClasses>
+    <genClasses ecoreClass="Space.ecore#//KeywordTable">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Space.ecore#//KeywordTable/keywords"/>
+    </genClasses>
+    <genClasses ecoreClass="Space.ecore#//VariablesTable">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Space.ecore#//VariablesTable/variables"/>
+    </genClasses>
+    <genClasses ecoreClass="Space.ecore#//Setting"/>
+    <genClasses ecoreClass="Space.ecore#//TestCase">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Space.ecore#//TestCase/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Space.ecore#//TestCase/settings"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Space.ecore#//TestCase/steps"/>
+    </genClasses>
+    <genClasses ecoreClass="Space.ecore#//Keyword">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Space.ecore#//Keyword/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Space.ecore#//Keyword/settings"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Space.ecore#//Keyword/steps"/>
+    </genClasses>
+    <genClasses ecoreClass="Space.ecore#//Variable">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Space.ecore#//Variable/name"/>
+    </genClasses>
+    <genClasses ecoreClass="Space.ecore#//ScalarVariable"/>
+    <genClasses ecoreClass="Space.ecore#//ListVariable"/>
+    <genClasses ecoreClass="Space.ecore#//TestCaseSetting">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Space.ecore#//TestCaseSetting/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Space.ecore#//TestCaseSetting/value"/>
+    </genClasses>
+    <genClasses ecoreClass="Space.ecore#//KeywordSetting">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Space.ecore#//KeywordSetting/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Space.ecore#//KeywordSetting/value"/>
+    </genClasses>
+    <genClasses ecoreClass="Space.ecore#//IndentedStep"/>
+    <genClasses ecoreClass="Space.ecore#//OneValueSetting">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Space.ecore#//OneValueSetting/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Space.ecore#//OneValueSetting/value"/>
+    </genClasses>
+    <genClasses ecoreClass="Space.ecore#//ValuesSetting">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Space.ecore#//ValuesSetting/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Space.ecore#//ValuesSetting/value"/>
+    </genClasses>
+    <genClasses ecoreClass="Space.ecore#//StepSetting">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Space.ecore#//StepSetting/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Space.ecore#//StepSetting/value"/>
+    </genClasses>
+    <genClasses ecoreClass="Space.ecore#//RobotStep">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Space.ecore#//RobotStep/keyword"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>
