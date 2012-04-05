@@ -13,19 +13,19 @@ RobotTable:
 	SettingsTable | TestCaseTable | KeywordTable | VariablesTable;
 
 SettingsTable:
-	'*** Settings ***' NL
+	STARS ' Settings ' STARS NL
 	(settings+=Setting)+;
 
 TestCaseTable:
-	'*** Test Cases ***' NL
+	STARS ' Test Cases ' STARS NL
 	(tests+=TestCase)+;
 
 KeywordTable:
-	'*** Keywords ***' NL
+	STARS ' Keywords ' STARS NL
 	(keywords+=Keyword)+;
 
 VariablesTable:
-	'*** Variables ***' NL
+	STARS ' Variables ' STARS NL
 	(variables+=Variable)+;
 
 Setting:
@@ -46,17 +46,27 @@ Variable:
 ;
 
 ScalarVariable:
-	'${' name=RobotText '}' SEPARATOR  RobotText NL
+	name=ScalarName SEPARATOR  value=RobotText NL
 ;
 
 ListVariable:
-	'@{' name=RobotText '}' SEPARATOR Values
+	name=ListName SEPARATOR value=Values
 ;
 
 TestCaseSetting:
 	SEPARATOR name=TestCaseSettingName SEPARATOR value=Values;
 
 KeywordSetting:
+    ArgumentsSetting | SomeKeywordSetting;
+
+ArgumentsSetting:
+	SEPARATOR name='[Arguments]'
+	(SEPARATOR args+=ScalarName)*
+	(SEPARATOR default_args+=ScalarName EQ defaults+=RobotText)*
+	(SEPARATOR ListName)?
+	NL;
+
+SomeKeywordSetting:
 	SEPARATOR name=KeywordSettingName SEPARATOR value=Values;
 
 IndentedStep:
@@ -75,7 +85,6 @@ enum KeywordSettingName:
 	DOCUMENTATION='[Documentation]' |
 	TIMEOUT='[Timeout]' |
 	TEARDOWN='[Teardown]' |
-	ARGUMENTS='[Arguments]'|
 	RETURN='[Return]'
 ;
 
@@ -108,12 +117,24 @@ enum RobotStepSetting:
 ;
 
 RobotStep:
-	keyword=[Keyword|MacroName] (SEPARATOR RobotText)* NL;
+	keyword=[Keyword|MacroName] (SEPARATOR values+=CellValue)* NL;
+
+CellValue: {CellValue}
+	f=RobotText | link=[ScalarVariable | ScalarName]
+;
 
 Values:
-	RobotText (SEPARATOR RobotText)* NL;
+	val=RobotText (SEPARATOR others+=RobotText)* NL;
 
-RobotText: ('*' | TEXT) ((' ' | '*') TEXT)*;
+ScalarName:
+	DOLLAR LBRACKET RobotText RBRACKET
+;
+
+ListName:
+	ATSIGN LBRACKET RobotText RBRACKET
+;
+
+RobotText: (STARS | TEXT) ((' ' | STARS) TEXT)*;
 
 MacroName: TEXT ((' ' | '*') TEXT)*;
 
@@ -121,6 +142,14 @@ terminal SEPARATOR: ' '' '+;
 
 terminal NL: ('\r'|'\n')+;
 
-terminal TEXT: !(' '|'\r'|'\n'|'*')+;
+terminal TEXT: !('='|' '|'\r'|'\n'|'*'|'{'|'}'|'$'|'@')+;
+
+terminal STARS: '*'+;
+
+terminal RBRACKET: '}';
+terminal LBRACKET: '{';
+terminal DOLLAR: '$';
+terminal ATSIGN: '@';
+terminal EQ: '=';
 
 terminal COMMENT: ' '* '#' !('\r'|'\n')*;
