@@ -42,31 +42,55 @@
   <eClassifiers xsi:type="ecore:EClass" name="Variable">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ScalarVariable" eSuperTypes="#//Variable"/>
-  <eClassifiers xsi:type="ecore:EClass" name="ListVariable" eSuperTypes="#//Variable"/>
-  <eClassifiers xsi:type="ecore:EClass" name="TestCaseSetting">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="#//TestCaseSettingName"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ScalarVariable" eSuperTypes="#//Variable">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="KeywordSetting">
+  <eClassifiers xsi:type="ecore:EClass" name="ListVariable" eSuperTypes="#//Variable">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="#//Values"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TestCaseSetting"/>
+  <eClassifiers xsi:type="ecore:EClass" name="SomeTestSetting" eSuperTypes="#//TestCaseSetting">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="#//TestCaseSettingName"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="#//Values"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="KeywordSetting"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ArgumentsSetting" eSuperTypes="#//KeywordSetting">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="args" unique="false" upperBound="-1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="default_args" unique="false"
+        upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="defaults" unique="false"
+        upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TeardownSetting" eSuperTypes="#//TestCaseSetting #//KeywordSetting">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="step" eType="#//IndentedStep"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SetupSetting" eSuperTypes="#//TestCaseSetting">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="step" eType="#//IndentedStep"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SomeKeywordSetting" eSuperTypes="#//KeywordSetting">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="#//KeywordSettingName"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="#//Values"
+        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IndentedStep"/>
   <eClassifiers xsi:type="ecore:EEnum" name="TestCaseSettingName">
     <eLiterals name="DOCUMENTATION" literal="[Documentation]"/>
     <eLiterals name="TIMEOUT" value="1" literal="[Timeout]"/>
-    <eLiterals name="SETUP" value="2" literal="[Setup]"/>
-    <eLiterals name="TEARDOWN" value="3" literal="[Teardown]"/>
-    <eLiterals name="TAGS" value="4" literal="[Tags]"/>
-    <eLiterals name="TEMPLATE" value="5" literal="[Template]"/>
+    <eLiterals name="TAGS" value="2" literal="[Tags]"/>
+    <eLiterals name="TEMPLATE" value="3" literal="[Template]"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="KeywordSettingName">
     <eLiterals name="DOCUMENTATION" literal="[Documentation]"/>
     <eLiterals name="TIMEOUT" value="1" literal="[Timeout]"/>
-    <eLiterals name="TEARDOWN" value="2" literal="[Teardown]"/>
-    <eLiterals name="ARGUMENTS" value="3" literal="[Arguments]"/>
-    <eLiterals name="RETURN" value="4" literal="[Return]"/>
+    <eLiterals name="RETURN" value="2" literal="[Return]"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="OneValueSetting" eSuperTypes="#//Setting">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="#//RobotOneValueSetting"/>
@@ -74,7 +98,8 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ValuesSetting" eSuperTypes="#//Setting">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="#//RobotValuesSetting"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="#//Values"
+        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="StepSetting" eSuperTypes="#//Setting">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="#//RobotStepSetting"/>
@@ -99,5 +124,16 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="RobotStep" eSuperTypes="#//IndentedStep">
     <eStructuralFeatures xsi:type="ecore:EReference" name="keyword" eType="#//Keyword"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="values" upperBound="-1"
+        eType="#//CellValue" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CellValue">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="f" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="link" eType="#//ScalarVariable"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Values">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="val" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="others" unique="false"
+        upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
 </ecore:EPackage>

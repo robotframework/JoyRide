@@ -13,20 +13,36 @@ RobotTable:
 	SettingsTable | TestCaseTable | KeywordTable | VariablesTable;
 
 SettingsTable:
-	'*** Settings ***' NL
+	SettingsHeader
 	(settings+=Setting)+;
 
+SettingsHeader:
+	STARS ' Settings ' STARS NL
+;
+
 TestCaseTable:
-	'*** Test Cases ***' NL
+	TestCaseHeader
 	(tests+=TestCase)+;
 
+TestCaseHeader:
+	STARS ' Test Cases ' STARS NL
+;
+
 KeywordTable:
-	'*** Keywords ***' NL
+	KeywordTableHeader
 	(keywords+=Keyword)+;
 
+KeywordTableHeader:
+	STARS ' Keywords ' STARS NL
+;
+
 VariablesTable:
-	'*** Variables ***' NL
+	VariablesTableHeader
 	(variables+=Variable)+;
+
+VariablesTableHeader:
+	STARS ' Variables ' STARS NL
+;
 
 Setting:
 	(OneValueSetting | ValuesSetting | StepSetting);
@@ -46,17 +62,37 @@ Variable:
 ;
 
 ScalarVariable:
-	'${' name=RobotText '}' SEPARATOR  RobotText NL
+	name=ScalarName SEPARATOR  value=RobotText NL
 ;
 
 ListVariable:
-	'@{' name=RobotText '}' SEPARATOR Values
+	name=ListName SEPARATOR value=Values
 ;
 
 TestCaseSetting:
+	SetupSetting | TeardownSetting | SomeTestSetting;
+
+SomeTestSetting:
 	SEPARATOR name=TestCaseSettingName SEPARATOR value=Values;
 
 KeywordSetting:
+    ArgumentsSetting | TeardownSetting | SomeKeywordSetting;
+
+ArgumentsSetting:
+	SEPARATOR name='[Arguments]'
+	(SEPARATOR args+=ScalarName)*
+	(SEPARATOR default_args+=ScalarName EQ defaults+=RobotText)*
+	(SEPARATOR ListName)?
+	NL;
+
+TeardownSetting:
+    SEPARATOR name='[Teardown]' step=IndentedStep;
+
+SetupSetting:
+    SEPARATOR name='[Setup]' step=IndentedStep;
+
+
+SomeKeywordSetting:
 	SEPARATOR name=KeywordSettingName SEPARATOR value=Values;
 
 IndentedStep:
@@ -65,8 +101,6 @@ IndentedStep:
 enum TestCaseSettingName:
 	DOCUMENTATION='[Documentation]' |
 	TIMEOUT='[Timeout]' |
-	SETUP='[Setup]' |
-	TEARDOWN='[Teardown]' |
 	TAGS='[Tags]' |
 	TEMPLATE='[Template]'
 ;
@@ -74,8 +108,6 @@ enum TestCaseSettingName:
 enum KeywordSettingName:
 	DOCUMENTATION='[Documentation]' |
 	TIMEOUT='[Timeout]' |
-	TEARDOWN='[Teardown]' |
-	ARGUMENTS='[Arguments]'|
 	RETURN='[Return]'
 ;
 
@@ -108,12 +140,24 @@ enum RobotStepSetting:
 ;
 
 RobotStep:
-	keyword=[Keyword|MacroName] (SEPARATOR RobotText)* NL;
+	keyword=[Keyword|MacroName] (SEPARATOR values+=CellValue)* NL;
+
+CellValue: {CellValue}
+	f=RobotText | link=[ScalarVariable | ScalarName]
+;
 
 Values:
-	RobotText (SEPARATOR RobotText)* NL;
+	val=RobotText (SEPARATOR others+=RobotText)* NL;
 
-RobotText: ('*' | TEXT) ((' ' | '*') TEXT)*;
+ScalarName:
+	DOLLAR LBRACKET RobotText RBRACKET
+;
+
+ListName:
+	ATSIGN LBRACKET RobotText RBRACKET
+;
+
+RobotText: (STARS | TEXT) ((' ' | STARS) TEXT)*;
 
 MacroName: TEXT ((' ' | '*') TEXT)*;
 
@@ -121,6 +165,14 @@ terminal SEPARATOR: ' '' '+;
 
 terminal NL: ('\r'|'\n')+;
 
-terminal TEXT: !(' '|'\r'|'\n'|'*')+;
+terminal TEXT: !('='|' '|'\r'|'\n'|'*'|'{'|'}'|'$'|'@')+;
+
+terminal STARS: '*'+;
+
+terminal RBRACKET: '}';
+terminal LBRACKET: '{';
+terminal DOLLAR: '$';
+terminal ATSIGN: '@';
+terminal EQ: '=';
 
 terminal COMMENT: ' '* '#' !('\r'|'\n')*;

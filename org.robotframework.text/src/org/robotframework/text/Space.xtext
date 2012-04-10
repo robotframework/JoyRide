@@ -13,20 +13,36 @@ RobotTable:
 	SettingsTable | TestCaseTable | KeywordTable | VariablesTable;
 
 SettingsTable:
-	STARS ' Settings ' STARS NL
+	SettingsHeader
 	(settings+=Setting)+;
 
+SettingsHeader:
+	STARS ' Settings ' STARS NL
+;
+
 TestCaseTable:
-	STARS ' Test Cases ' STARS NL
+	TestCaseHeader
 	(tests+=TestCase)+;
 
+TestCaseHeader:
+	STARS ' Test Cases ' STARS NL
+;
+
 KeywordTable:
-	STARS ' Keywords ' STARS NL
+	KeywordTableHeader
 	(keywords+=Keyword)+;
 
+KeywordTableHeader:
+	STARS ' Keywords ' STARS NL
+;
+
 VariablesTable:
-	STARS ' Variables ' STARS NL
+	VariablesTableHeader
 	(variables+=Variable)+;
+
+VariablesTableHeader:
+	STARS ' Variables ' STARS NL
+;
 
 Setting:
 	(OneValueSetting | ValuesSetting | StepSetting);
@@ -54,10 +70,13 @@ ListVariable:
 ;
 
 TestCaseSetting:
+	SetupSetting | TeardownSetting | SomeTestSetting;
+
+SomeTestSetting:
 	SEPARATOR name=TestCaseSettingName SEPARATOR value=Values;
 
 KeywordSetting:
-    ArgumentsSetting | SomeKeywordSetting;
+    ArgumentsSetting | TeardownSetting | SomeKeywordSetting;
 
 ArgumentsSetting:
 	SEPARATOR name='[Arguments]'
@@ -65,6 +84,13 @@ ArgumentsSetting:
 	(SEPARATOR default_args+=ScalarName EQ defaults+=RobotText)*
 	(SEPARATOR ListName)?
 	NL;
+
+TeardownSetting:
+    SEPARATOR name='[Teardown]' step=IndentedStep;
+
+SetupSetting:
+    SEPARATOR name='[Setup]' step=IndentedStep;
+
 
 SomeKeywordSetting:
 	SEPARATOR name=KeywordSettingName SEPARATOR value=Values;
@@ -75,8 +101,6 @@ IndentedStep:
 enum TestCaseSettingName:
 	DOCUMENTATION='[Documentation]' |
 	TIMEOUT='[Timeout]' |
-	SETUP='[Setup]' |
-	TEARDOWN='[Teardown]' |
 	TAGS='[Tags]' |
 	TEMPLATE='[Template]'
 ;
@@ -84,7 +108,6 @@ enum TestCaseSettingName:
 enum KeywordSettingName:
 	DOCUMENTATION='[Documentation]' |
 	TIMEOUT='[Timeout]' |
-	TEARDOWN='[Teardown]' |
 	RETURN='[Return]'
 ;
 
