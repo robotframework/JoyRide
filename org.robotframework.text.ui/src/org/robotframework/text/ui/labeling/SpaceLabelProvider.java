@@ -5,6 +5,11 @@ package org.robotframework.text.ui.labeling;
 
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.xtext.ui.label.DefaultEObjectLabelProvider;
+import org.robotframework.text.space.IndentedStep;
+import org.robotframework.text.space.KeywordTable;
+import org.robotframework.text.space.SettingsTable;
+import org.robotframework.text.space.TestCaseTable;
+import org.robotframework.text.space.VariablesTable;
 
 import com.google.inject.Inject;
 
@@ -20,6 +25,25 @@ public class SpaceLabelProvider extends DefaultEObjectLabelProvider {
 		super(delegate);
 	}
 
+	String text(TestCaseTable table) {
+		return "*** Test Cases ***";
+	}
+
+	String text(KeywordTable table) {
+		return "*** Keywords ***";
+	}
+	
+	String text(VariablesTable table) {
+		return "*** Variables ***";
+	}
+	
+	String text(SettingsTable table) {
+		return "*** Settings ***";
+	}
+
+	String text(IndentedStep step) {
+		return "Step";
+	}
 /*
 	//Labels and icons can be computed like this:
 	

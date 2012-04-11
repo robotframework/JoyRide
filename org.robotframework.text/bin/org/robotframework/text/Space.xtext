@@ -70,46 +70,40 @@ ListVariable:
 ;
 
 TestCaseSetting:
-	SetupSetting | TeardownSetting | SomeTestSetting;
+	SEPARATOR (SetupSetting | TeardownSetting | SomeTestSetting);
 
 SomeTestSetting:
-	SEPARATOR name=TestCaseSettingName SEPARATOR value=Values;
+	name=('[Documentation]' |
+	'[Timeout]' |
+	'[Tags]' |
+	'[Template]') 
+	SEPARATOR value=Values;
 
 KeywordSetting:
-    ArgumentsSetting | TeardownSetting | SomeKeywordSetting;
+    SEPARATOR setting=(ArgumentsSetting | TeardownSetting | SomeKeywordSetting);
 
 ArgumentsSetting:
-	SEPARATOR name='[Arguments]'
+	name='[Arguments]'
 	(SEPARATOR args+=ScalarName)*
 	(SEPARATOR default_args+=ScalarName EQ defaults+=RobotText)*
 	(SEPARATOR ListName)?
 	NL;
 
 TeardownSetting:
-    SEPARATOR name='[Teardown]' step=IndentedStep;
+    name='[Teardown]' SEPARATOR step=ExecutingStep
+;
 
 SetupSetting:
-    SEPARATOR name='[Setup]' step=IndentedStep;
-
+    name='[Setup]' SEPARATOR step=ExecutingStep;
 
 SomeKeywordSetting:
-	SEPARATOR name=KeywordSettingName SEPARATOR value=Values;
+	name=('[Documentation]' |
+	'[Timeout]' |
+	'[Return]') 
+	SEPARATOR value=Values;
 
 IndentedStep:
-	SEPARATOR RobotStep;
-
-enum TestCaseSettingName:
-	DOCUMENTATION='[Documentation]' |
-	TIMEOUT='[Timeout]' |
-	TAGS='[Tags]' |
-	TEMPLATE='[Template]'
-;
-
-enum KeywordSettingName:
-	DOCUMENTATION='[Documentation]' |
-	TIMEOUT='[Timeout]' |
-	RETURN='[Return]'
-;
+	SEPARATOR step=RobotStep;
 
 OneValueSetting:
 	name=RobotOneValueSetting SEPARATOR value=RobotText NL;
@@ -118,29 +112,41 @@ ValuesSetting:
 	name=RobotValuesSetting SEPARATOR value=Values;
 
 StepSetting:
-	name=RobotStepSetting SEPARATOR value=RobotStep;
+	name=RobotStepSetting SEPARATOR value=ExecutingStep;
 
-enum RobotOneValueSetting:
-	DOCUMENTATION='Documentation' |
-	TEST_TIMEOUT='Test Timeout'
+RobotOneValueSetting:
+	'Documentation' |
+	'Test Timeout'
 ;
 
-enum RobotValuesSetting:
-	FORCE_TAGS='Force Tags' |
-	DEFAULT_TAGS='Default Tags' |
-	LIBRARY_IMPORT='Library' |
-	RESOURCE_IMPORT='Resource'
+RobotValuesSetting:
+	'Force Tags' |
+	'Default Tags' |
+	'Library' |
+	'Resource' |
+	'Test Template'
 ;
 
-enum RobotStepSetting:
-	SUITE_SETUP='Suite Setup' |
-	SUITE_TEARDOWN='Suite Teardown' |
-	TEST_SETUP='Test Setup' |
-	TEST_TEARDOWN='Test Teardown'
+RobotStepSetting:
+	'Suite Setup' |
+	'Suite Teardown' |
+	'Test Setup' |
+	'Test Teardown'
 ;
 
 RobotStep:
+    ExecutingStep | AssigningStep	
+;
+
+ExecutingStep:
 	keyword=[Keyword|MacroName] (SEPARATOR values+=CellValue)* NL;
+
+AssigningStep:
+	(vars+=[Variable|ScalarName] SEPARATOR)* 
+	(vars+=[Variable|ScalarName] | vars+=[Variable|ListName]) EQ? 
+	SEPARATOR keyword=[Keyword|MacroName] 
+	(SEPARATOR values+=CellValue)* NL
+;
 
 CellValue: {CellValue}
 	f=RobotText | link=[ScalarVariable | ScalarName]

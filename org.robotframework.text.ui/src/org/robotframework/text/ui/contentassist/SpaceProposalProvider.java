@@ -3,10 +3,160 @@
 */
 package org.robotframework.text.ui.contentassist;
 
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.xtext.Assignment;
+import org.eclipse.xtext.RuleCall;
+import org.eclipse.xtext.ui.editor.contentassist.ContentAssistContext;
+import org.eclipse.xtext.ui.editor.contentassist.ICompletionProposalAcceptor;
 import org.robotframework.text.ui.contentassist.AbstractSpaceProposalProvider;
 /**
  * see http://www.eclipse.org/Xtext/documentation/latest/xtext.html#contentAssist on how to customize content assistant
  */
 public class SpaceProposalProvider extends AbstractSpaceProposalProvider {
 
+	@Override
+	public void complete_TestCaseHeader(EObject model, RuleCall ruleCall,
+			ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
+		super.complete_TestCaseHeader(model, ruleCall, context, acceptor);
+		acceptor.accept(createCompletionProposal("*** Test Cases ***", context));
+	}
+	
+	@Override
+	public void complete_KeywordTableHeader(EObject model, RuleCall ruleCall,
+			ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
+		super.complete_KeywordTableHeader(model, ruleCall, context, acceptor);
+		acceptor.accept(createCompletionProposal("*** Keywords ***", context));
+	}
+	
+	@Override
+	public void complete_SettingsHeader(EObject model, RuleCall ruleCall,
+			ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
+		super.complete_SettingsHeader(model, ruleCall, context, acceptor);
+		acceptor.accept(createCompletionProposal("*** Settings ***", context));
+	}
+	
+	@Override
+	public void complete_VariablesTableHeader(EObject model, RuleCall ruleCall,
+			ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
+		super.complete_VariablesTableHeader(model, ruleCall, context, acceptor);
+		acceptor.accept(createCompletionProposal("*** Variables ***", context));
+	}
+	
+	@Override
+	public void complete_SettingsTable(EObject model, RuleCall ruleCall,
+			ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
+		super.complete_SettingsTable(model, ruleCall, context, acceptor);
+		if(model == null) return;
+		for(String settingName : new String[]{
+				"Documentation", 
+				"Suite Setup", 
+				"Suite Teardown", 
+				"Test Timeout",
+				"Force Tags",
+				"Default Tags",
+				"Library",
+				"Resource",
+				"Test Template",
+				"Test Setup",
+				"Test Teardown"}){
+			acceptor.accept(createCompletionProposal(settingName, context));
+		}
+	}
+	
+	@Override
+	public void completeExecutingStep_Keyword(EObject model,
+			Assignment assignment, ContentAssistContext context,
+			ICompletionProposalAcceptor acceptor) {
+		super.completeExecutingStep_Keyword(model, assignment, context, acceptor);
+		for(String kw: new String[]{
+				"Call Method",
+				"Catenate",
+				"Comment",
+				"Convert To Binary",
+				"Convert To Boolean",
+				"Convert To Hex",
+				"Convert To Integer",
+				"Convert To Number",
+				"Convert To Octal",
+				"Convert To String",
+				"Create List",
+				"Evaluate",
+				"Exit For Loop",
+				"Fail",
+				"Fatal Error",
+				"Get Count",
+				"Get Length",
+				"Get Library Instance",
+				"Get Time",
+				"Get Variable Value",
+				"Get Variables",
+				"Import Library",
+				"Import Resource",
+				"Import Variables",
+				"Keyword Should Exist",
+				"Length Should Be",
+				"Log",
+				"Log Many",
+				"Log Variables",
+				"No Operation",
+				"Regexp Escape",
+				"Remove Tags",
+				"Repeat Keyword",
+				"Replace Variables",
+				"Run Keyword",
+				"Run Keyword And Continue On Failure",
+				"Run Keyword And Expect Error",
+				"Run Keyword And Ignore Error",
+				"Run Keyword If",
+				"Run Keyword If All Critical Tests Passed",
+				"Run Keyword If All Tests Passed",
+				"Run Keyword If Any Critical Tests Failed",
+				"Run Keyword If Any Tests Failed",
+				"Run Keyword If Test Failed",
+				"Run Keyword If Test Passed",
+				"Run Keyword If Timeout Occurred",
+				"Run Keyword Unless",
+				"Run Keywords",
+				"Set Global Variable",
+				"Set Library Search Order",
+				"Set Log Level",
+				"Set Suite Documentation",
+				"Set Suite Variable",
+				"Set Tags",
+				"Set Test Documentation",
+				"Set Test Message",
+				"Set Test Variable",
+				"Set Variable",
+				"Set Variable If",
+				"Should Be Empty",
+				"Should Be Equal",
+				"Should Be Equal As Integers",
+				"Should Be Equal As Numbers",
+				"Should Be Equal As Strings",
+				"Should Be True",
+				"Should Contain",
+				"Should Contain X Times",
+				"Should End With",
+				"Should Match",
+				"Should Match Regexp",
+				"Should Not Be Empty",
+				"Should Not Be Equal",
+				"Should Not Be Equal As Integers",
+				"Should Not Be Equal As Numbers",
+				"Should Not Be Equal As Strings",
+				"Should Not Be True",
+				"Should Not Contain",
+				"Should Not End With",
+				"Should Not Match",
+				"Should Not Match Regexp",
+				"Should Not Start With",
+				"Should Start With",
+				"Sleep",
+				"Variable Should Exist",
+				"Variable Should Not Exist",
+				"Wait Until Keyword Succeeds"
+		}){
+			acceptor.accept(createCompletionProposal(kw, context));
+		}
+	}
 }

@@ -118,9 +118,9 @@
       <classifier xsi:type="ecore:EClass" href="http://www.robotframework.org/text/Space#//Setting"/>
     </type>
     <alternatives xsi:type="xtext:Alternatives">
+      <elements xsi:type="xtext:RuleCall" rule="//@rules.24"/>
+      <elements xsi:type="xtext:RuleCall" rule="//@rules.25"/>
       <elements xsi:type="xtext:RuleCall" rule="//@rules.26"/>
-      <elements xsi:type="xtext:RuleCall" rule="//@rules.27"/>
-      <elements xsi:type="xtext:RuleCall" rule="//@rules.28"/>
     </alternatives>
   </rules>
   <rules xsi:type="xtext:ParserRule" name="TestCase">
@@ -199,10 +199,13 @@
     <type metamodel="//@metamodelDeclarations.1">
       <classifier xsi:type="ecore:EClass" href="http://www.robotframework.org/text/Space#//TestCaseSetting"/>
     </type>
-    <alternatives xsi:type="xtext:Alternatives">
-      <elements xsi:type="xtext:RuleCall" rule="//@rules.21"/>
-      <elements xsi:type="xtext:RuleCall" rule="//@rules.20"/>
-      <elements xsi:type="xtext:RuleCall" rule="//@rules.17"/>
+    <alternatives xsi:type="xtext:Group">
+      <elements xsi:type="xtext:RuleCall" rule="//@rules.39"/>
+      <elements xsi:type="xtext:Alternatives">
+        <elements xsi:type="xtext:RuleCall" rule="//@rules.21"/>
+        <elements xsi:type="xtext:RuleCall" rule="//@rules.20"/>
+        <elements xsi:type="xtext:RuleCall" rule="//@rules.17"/>
+      </elements>
     </alternatives>
   </rules>
   <rules xsi:type="xtext:ParserRule" name="SomeTestSetting">
@@ -210,9 +213,13 @@
       <classifier xsi:type="ecore:EClass" href="http://www.robotframework.org/text/Space#//SomeTestSetting"/>
     </type>
     <alternatives xsi:type="xtext:Group">
-      <elements xsi:type="xtext:RuleCall" rule="//@rules.39"/>
       <elements xsi:type="xtext:Assignment" feature="name" operator="=">
-        <terminal xsi:type="xtext:RuleCall" rule="//@rules.24"/>
+        <terminal xsi:type="xtext:Alternatives">
+          <elements xsi:type="xtext:Keyword" value="[Documentation]"/>
+          <elements xsi:type="xtext:Keyword" value="[Timeout]"/>
+          <elements xsi:type="xtext:Keyword" value="[Tags]"/>
+          <elements xsi:type="xtext:Keyword" value="[Template]"/>
+        </terminal>
       </elements>
       <elements xsi:type="xtext:RuleCall" rule="//@rules.39"/>
       <elements xsi:type="xtext:Assignment" feature="value" operator="=">
@@ -224,10 +231,15 @@
     <type metamodel="//@metamodelDeclarations.1">
       <classifier xsi:type="ecore:EClass" href="http://www.robotframework.org/text/Space#//KeywordSetting"/>
     </type>
-    <alternatives xsi:type="xtext:Alternatives">
-      <elements xsi:type="xtext:RuleCall" rule="//@rules.19"/>
-      <elements xsi:type="xtext:RuleCall" rule="//@rules.20"/>
-      <elements xsi:type="xtext:RuleCall" rule="//@rules.22"/>
+    <alternatives xsi:type="xtext:Group">
+      <elements xsi:type="xtext:RuleCall" rule="//@rules.39"/>
+      <elements xsi:type="xtext:Assignment" feature="setting" operator="=">
+        <terminal xsi:type="xtext:Alternatives">
+          <elements xsi:type="xtext:RuleCall" rule="//@rules.19"/>
+          <elements xsi:type="xtext:RuleCall" rule="//@rules.20"/>
+          <elements xsi:type="xtext:RuleCall" rule="//@rules.22"/>
+        </terminal>
+      </elements>
     </alternatives>
   </rules>
   <rules xsi:type="xtext:ParserRule" name="ArgumentsSetting">
@@ -235,7 +247,6 @@
       <classifier xsi:type="ecore:EClass" href="http://www.robotframework.org/text/Space#//ArgumentsSetting"/>
     </type>
     <alternatives xsi:type="xtext:Group">
-      <elements xsi:type="xtext:RuleCall" rule="//@rules.39"/>
       <elements xsi:type="xtext:Assignment" feature="name" operator="=">
         <terminal xsi:type="xtext:Keyword" value="[Arguments]"/>
       </elements>
@@ -267,12 +278,12 @@
       <classifier xsi:type="ecore:EClass" href="http://www.robotframework.org/text/Space#//TeardownSetting"/>
     </type>
     <alternatives xsi:type="xtext:Group">
-      <elements xsi:type="xtext:RuleCall" rule="//@rules.39"/>
       <elements xsi:type="xtext:Assignment" feature="name" operator="=">
         <terminal xsi:type="xtext:Keyword" value="[Teardown]"/>
       </elements>
+      <elements xsi:type="xtext:RuleCall" rule="//@rules.39"/>
       <elements xsi:type="xtext:Assignment" feature="step" operator="=">
-        <terminal xsi:type="xtext:RuleCall" rule="//@rules.23"/>
+        <terminal xsi:type="xtext:RuleCall" rule="//@rules.31"/>
       </elements>
     </alternatives>
   </rules>
@@ -281,12 +292,12 @@
       <classifier xsi:type="ecore:EClass" href="http://www.robotframework.org/text/Space#//SetupSetting"/>
     </type>
     <alternatives xsi:type="xtext:Group">
-      <elements xsi:type="xtext:RuleCall" rule="//@rules.39"/>
       <elements xsi:type="xtext:Assignment" feature="name" operator="=">
         <terminal xsi:type="xtext:Keyword" value="[Setup]"/>
       </elements>
+      <elements xsi:type="xtext:RuleCall" rule="//@rules.39"/>
       <elements xsi:type="xtext:Assignment" feature="step" operator="=">
-        <terminal xsi:type="xtext:RuleCall" rule="//@rules.23"/>
+        <terminal xsi:type="xtext:RuleCall" rule="//@rules.31"/>
       </elements>
     </alternatives>
   </rules>
@@ -295,9 +306,12 @@
       <classifier xsi:type="ecore:EClass" href="http://www.robotframework.org/text/Space#//SomeKeywordSetting"/>
     </type>
     <alternatives xsi:type="xtext:Group">
-      <elements xsi:type="xtext:RuleCall" rule="//@rules.39"/>
       <elements xsi:type="xtext:Assignment" feature="name" operator="=">
-        <terminal xsi:type="xtext:RuleCall" rule="//@rules.25"/>
+        <terminal xsi:type="xtext:Alternatives">
+          <elements xsi:type="xtext:Keyword" value="[Documentation]"/>
+          <elements xsi:type="xtext:Keyword" value="[Timeout]"/>
+          <elements xsi:type="xtext:Keyword" value="[Return]"/>
+        </terminal>
       </elements>
       <elements xsi:type="xtext:RuleCall" rule="//@rules.39"/>
       <elements xsi:type="xtext:Assignment" feature="value" operator="=">
@@ -311,48 +325,8 @@
     </type>
     <alternatives xsi:type="xtext:Group">
       <elements xsi:type="xtext:RuleCall" rule="//@rules.39"/>
-      <elements xsi:type="xtext:RuleCall" rule="//@rules.32"/>
-    </alternatives>
-  </rules>
-  <rules xsi:type="xtext:EnumRule" name="TestCaseSettingName">
-    <type metamodel="//@metamodelDeclarations.1">
-      <classifier xsi:type="ecore:EEnum" href="http://www.robotframework.org/text/Space#//TestCaseSettingName"/>
-    </type>
-    <alternatives xsi:type="xtext:Alternatives">
-      <elements xsi:type="xtext:EnumLiteralDeclaration">
-        <enumLiteral href="http://www.robotframework.org/text/Space#//TestCaseSettingName/DOCUMENTATION"/>
-        <literal value="[Documentation]"/>
-      </elements>
-      <elements xsi:type="xtext:EnumLiteralDeclaration">
-        <enumLiteral href="http://www.robotframework.org/text/Space#//TestCaseSettingName/TIMEOUT"/>
-        <literal value="[Timeout]"/>
-      </elements>
-      <elements xsi:type="xtext:EnumLiteralDeclaration">
-        <enumLiteral href="http://www.robotframework.org/text/Space#//TestCaseSettingName/TAGS"/>
-        <literal value="[Tags]"/>
-      </elements>
-      <elements xsi:type="xtext:EnumLiteralDeclaration">
-        <enumLiteral href="http://www.robotframework.org/text/Space#//TestCaseSettingName/TEMPLATE"/>
-        <literal value="[Template]"/>
-      </elements>
-    </alternatives>
-  </rules>
-  <rules xsi:type="xtext:EnumRule" name="KeywordSettingName">
-    <type metamodel="//@metamodelDeclarations.1">
-      <classifier xsi:type="ecore:EEnum" href="http://www.robotframework.org/text/Space#//KeywordSettingName"/>
-    </type>
-    <alternatives xsi:type="xtext:Alternatives">
-      <elements xsi:type="xtext:EnumLiteralDeclaration">
-        <enumLiteral href="http://www.robotframework.org/text/Space#//KeywordSettingName/DOCUMENTATION"/>
-        <literal value="[Documentation]"/>
-      </elements>
-      <elements xsi:type="xtext:EnumLiteralDeclaration">
-        <enumLiteral href="http://www.robotframework.org/text/Space#//KeywordSettingName/TIMEOUT"/>
-        <literal value="[Timeout]"/>
-      </elements>
-      <elements xsi:type="xtext:EnumLiteralDeclaration">
-        <enumLiteral href="http://www.robotframework.org/text/Space#//KeywordSettingName/RETURN"/>
-        <literal value="[Return]"/>
+      <elements xsi:type="xtext:Assignment" feature="step" operator="=">
+        <terminal xsi:type="xtext:RuleCall" rule="//@rules.30"/>
       </elements>
     </alternatives>
   </rules>
@@ -362,7 +336,7 @@
     </type>
     <alternatives xsi:type="xtext:Group">
       <elements xsi:type="xtext:Assignment" feature="name" operator="=">
-        <terminal xsi:type="xtext:RuleCall" rule="//@rules.29"/>
+        <terminal xsi:type="xtext:RuleCall" rule="//@rules.27"/>
       </elements>
       <elements xsi:type="xtext:RuleCall" rule="//@rules.39"/>
       <elements xsi:type="xtext:Assignment" feature="value" operator="=">
@@ -377,7 +351,7 @@
     </type>
     <alternatives xsi:type="xtext:Group">
       <elements xsi:type="xtext:Assignment" feature="name" operator="=">
-        <terminal xsi:type="xtext:RuleCall" rule="//@rules.30"/>
+        <terminal xsi:type="xtext:RuleCall" rule="//@rules.28"/>
       </elements>
       <elements xsi:type="xtext:RuleCall" rule="//@rules.39"/>
       <elements xsi:type="xtext:Assignment" feature="value" operator="=">
@@ -391,80 +365,113 @@
     </type>
     <alternatives xsi:type="xtext:Group">
       <elements xsi:type="xtext:Assignment" feature="name" operator="=">
-        <terminal xsi:type="xtext:RuleCall" rule="//@rules.31"/>
+        <terminal xsi:type="xtext:RuleCall" rule="//@rules.29"/>
       </elements>
       <elements xsi:type="xtext:RuleCall" rule="//@rules.39"/>
       <elements xsi:type="xtext:Assignment" feature="value" operator="=">
-        <terminal xsi:type="xtext:RuleCall" rule="//@rules.32"/>
+        <terminal xsi:type="xtext:RuleCall" rule="//@rules.31"/>
       </elements>
     </alternatives>
   </rules>
-  <rules xsi:type="xtext:EnumRule" name="RobotOneValueSetting">
-    <type metamodel="//@metamodelDeclarations.1">
-      <classifier xsi:type="ecore:EEnum" href="http://www.robotframework.org/text/Space#//RobotOneValueSetting"/>
+  <rules xsi:type="xtext:ParserRule" name="RobotOneValueSetting">
+    <type metamodel="//@metamodelDeclarations.0">
+      <classifier xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </type>
     <alternatives xsi:type="xtext:Alternatives">
-      <elements xsi:type="xtext:EnumLiteralDeclaration">
-        <enumLiteral href="http://www.robotframework.org/text/Space#//RobotOneValueSetting/DOCUMENTATION"/>
-        <literal value="Documentation"/>
-      </elements>
-      <elements xsi:type="xtext:EnumLiteralDeclaration">
-        <enumLiteral href="http://www.robotframework.org/text/Space#//RobotOneValueSetting/TEST_TIMEOUT"/>
-        <literal value="Test Timeout"/>
-      </elements>
+      <elements xsi:type="xtext:Keyword" value="Documentation"/>
+      <elements xsi:type="xtext:Keyword" value="Test Timeout"/>
     </alternatives>
   </rules>
-  <rules xsi:type="xtext:EnumRule" name="RobotValuesSetting">
-    <type metamodel="//@metamodelDeclarations.1">
-      <classifier xsi:type="ecore:EEnum" href="http://www.robotframework.org/text/Space#//RobotValuesSetting"/>
+  <rules xsi:type="xtext:ParserRule" name="RobotValuesSetting">
+    <type metamodel="//@metamodelDeclarations.0">
+      <classifier xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </type>
     <alternatives xsi:type="xtext:Alternatives">
-      <elements xsi:type="xtext:EnumLiteralDeclaration">
-        <enumLiteral href="http://www.robotframework.org/text/Space#//RobotValuesSetting/FORCE_TAGS"/>
-        <literal value="Force Tags"/>
-      </elements>
-      <elements xsi:type="xtext:EnumLiteralDeclaration">
-        <enumLiteral href="http://www.robotframework.org/text/Space#//RobotValuesSetting/DEFAULT_TAGS"/>
-        <literal value="Default Tags"/>
-      </elements>
-      <elements xsi:type="xtext:EnumLiteralDeclaration">
-        <enumLiteral href="http://www.robotframework.org/text/Space#//RobotValuesSetting/LIBRARY_IMPORT"/>
-        <literal value="Library"/>
-      </elements>
-      <elements xsi:type="xtext:EnumLiteralDeclaration">
-        <enumLiteral href="http://www.robotframework.org/text/Space#//RobotValuesSetting/RESOURCE_IMPORT"/>
-        <literal value="Resource"/>
-      </elements>
+      <elements xsi:type="xtext:Keyword" value="Force Tags"/>
+      <elements xsi:type="xtext:Keyword" value="Default Tags"/>
+      <elements xsi:type="xtext:Keyword" value="Library"/>
+      <elements xsi:type="xtext:Keyword" value="Resource"/>
+      <elements xsi:type="xtext:Keyword" value="Test Template"/>
     </alternatives>
   </rules>
-  <rules xsi:type="xtext:EnumRule" name="RobotStepSetting">
-    <type metamodel="//@metamodelDeclarations.1">
-      <classifier xsi:type="ecore:EEnum" href="http://www.robotframework.org/text/Space#//RobotStepSetting"/>
+  <rules xsi:type="xtext:ParserRule" name="RobotStepSetting">
+    <type metamodel="//@metamodelDeclarations.0">
+      <classifier xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </type>
     <alternatives xsi:type="xtext:Alternatives">
-      <elements xsi:type="xtext:EnumLiteralDeclaration">
-        <enumLiteral href="http://www.robotframework.org/text/Space#//RobotStepSetting/SUITE_SETUP"/>
-        <literal value="Suite Setup"/>
-      </elements>
-      <elements xsi:type="xtext:EnumLiteralDeclaration">
-        <enumLiteral href="http://www.robotframework.org/text/Space#//RobotStepSetting/SUITE_TEARDOWN"/>
-        <literal value="Suite Teardown"/>
-      </elements>
-      <elements xsi:type="xtext:EnumLiteralDeclaration">
-        <enumLiteral href="http://www.robotframework.org/text/Space#//RobotStepSetting/TEST_SETUP"/>
-        <literal value="Test Setup"/>
-      </elements>
-      <elements xsi:type="xtext:EnumLiteralDeclaration">
-        <enumLiteral href="http://www.robotframework.org/text/Space#//RobotStepSetting/TEST_TEARDOWN"/>
-        <literal value="Test Teardown"/>
-      </elements>
+      <elements xsi:type="xtext:Keyword" value="Suite Setup"/>
+      <elements xsi:type="xtext:Keyword" value="Suite Teardown"/>
+      <elements xsi:type="xtext:Keyword" value="Test Setup"/>
+      <elements xsi:type="xtext:Keyword" value="Test Teardown"/>
     </alternatives>
   </rules>
   <rules xsi:type="xtext:ParserRule" name="RobotStep">
     <type metamodel="//@metamodelDeclarations.1">
       <classifier xsi:type="ecore:EClass" href="http://www.robotframework.org/text/Space#//RobotStep"/>
     </type>
+    <alternatives xsi:type="xtext:Alternatives">
+      <elements xsi:type="xtext:RuleCall" rule="//@rules.31"/>
+      <elements xsi:type="xtext:RuleCall" rule="//@rules.32"/>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="ExecutingStep">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.robotframework.org/text/Space#//ExecutingStep"/>
+    </type>
     <alternatives xsi:type="xtext:Group">
+      <elements xsi:type="xtext:Assignment" feature="keyword" operator="=">
+        <terminal xsi:type="xtext:CrossReference">
+          <type metamodel="//@metamodelDeclarations.1">
+            <classifier xsi:type="ecore:EClass" href="http://www.robotframework.org/text/Space#//Keyword"/>
+          </type>
+          <terminal xsi:type="xtext:RuleCall" rule="//@rules.38"/>
+        </terminal>
+      </elements>
+      <elements xsi:type="xtext:Group" cardinality="*">
+        <elements xsi:type="xtext:RuleCall" rule="//@rules.39"/>
+        <elements xsi:type="xtext:Assignment" feature="values" operator="+=">
+          <terminal xsi:type="xtext:RuleCall" rule="//@rules.33"/>
+        </elements>
+      </elements>
+      <elements xsi:type="xtext:RuleCall" rule="//@rules.40"/>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="AssigningStep">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.robotframework.org/text/Space#//AssigningStep"/>
+    </type>
+    <alternatives xsi:type="xtext:Group">
+      <elements xsi:type="xtext:Group" cardinality="*">
+        <elements xsi:type="xtext:Assignment" feature="vars" operator="+=">
+          <terminal xsi:type="xtext:CrossReference">
+            <type metamodel="//@metamodelDeclarations.1">
+              <classifier xsi:type="ecore:EClass" href="http://www.robotframework.org/text/Space#//Variable"/>
+            </type>
+            <terminal xsi:type="xtext:RuleCall" rule="//@rules.35"/>
+          </terminal>
+        </elements>
+        <elements xsi:type="xtext:RuleCall" rule="//@rules.39"/>
+      </elements>
+      <elements xsi:type="xtext:Alternatives">
+        <elements xsi:type="xtext:Assignment" feature="vars" operator="+=">
+          <terminal xsi:type="xtext:CrossReference">
+            <type metamodel="//@metamodelDeclarations.1">
+              <classifier xsi:type="ecore:EClass" href="http://www.robotframework.org/text/Space#//Variable"/>
+            </type>
+            <terminal xsi:type="xtext:RuleCall" rule="//@rules.35"/>
+          </terminal>
+        </elements>
+        <elements xsi:type="xtext:Assignment" feature="vars" operator="+=">
+          <terminal xsi:type="xtext:CrossReference">
+            <type metamodel="//@metamodelDeclarations.1">
+              <classifier xsi:type="ecore:EClass" href="http://www.robotframework.org/text/Space#//Variable"/>
+            </type>
+            <terminal xsi:type="xtext:RuleCall" rule="//@rules.36"/>
+          </terminal>
+        </elements>
+      </elements>
+      <elements xsi:type="xtext:RuleCall" cardinality="?" rule="//@rules.47"/>
+      <elements xsi:type="xtext:RuleCall" rule="//@rules.39"/>
       <elements xsi:type="xtext:Assignment" feature="keyword" operator="=">
         <terminal xsi:type="xtext:CrossReference">
           <type metamodel="//@metamodelDeclarations.1">

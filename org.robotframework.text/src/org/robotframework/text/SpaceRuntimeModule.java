@@ -7,5 +7,4 @@ package org.robotframework.text;
  * Use this class to register components to be used at runtime / without the Equinox extension registry.
  */
 public class SpaceRuntimeModule extends org.robotframework.text.AbstractSpaceRuntimeModule {
-
 }

@@ -11,7 +11,6 @@ import org.eclipse.xtext.ui.label.DefaultDescriptionLabelProvider;
  * see http://www.eclipse.org/Xtext/documentation/latest/xtext.html#labelProvider
  */
 public class SpaceDescriptionLabelProvider extends DefaultDescriptionLabelProvider {
-
 /*
 	//Labels and icons can be computed like this:
 	

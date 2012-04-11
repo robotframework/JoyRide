@@ -8,8 +8,8 @@ import org.eclipse.xtext.ui.editor.syntaxcoloring.AbstractAntlrTokenToAttributeI
 import org.eclipse.xtext.ui.editor.syntaxcoloring.IHighlightingConfiguration;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.ISemanticHighlightingCalculator;
 import org.robotframework.text.ui.syntaxcoloring.AntlrTokenToAttributeIdMapper;
-import org.robotframework.text.ui.syntaxcoloring.SpaceTextHighlightingConfiguration;
 import org.robotframework.text.ui.syntaxcoloring.SematicSpaceTextHighlightCalculator;
+import org.robotframework.text.ui.syntaxcoloring.SpaceTextHighlightingConfiguration;
 
 /**
  * Use this class to register components to be used within the IDE.
@@ -28,5 +28,9 @@ public class SpaceUiModule extends org.robotframework.text.ui.AbstractSpaceUiMod
 	
 	public Class<? extends ISemanticHighlightingCalculator> bindSematicSpaceTextHighlightCalculator() {
 		return SematicSpaceTextHighlightCalculator.class;
+	}
+	
+	public Class<? extends org.eclipse.xtext.linking.ILinkingDiagnosticMessageProvider.Extended> bindILinkingDiagnosticMessageProvider() {
+	    return IgnoreLinkingErrorsDiagnosticMessageProvider.class;
 	}
 }

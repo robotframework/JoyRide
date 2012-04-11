@@ -3,7 +3,15 @@
 */
 package org.robotframework.text.ui.outline;
 
+import org.eclipse.xtext.ui.editor.outline.IOutlineNode;
 import org.eclipse.xtext.ui.editor.outline.impl.DefaultOutlineTreeProvider;
+import org.robotframework.text.space.IndentedStep;
+import org.robotframework.text.space.Keyword;
+import org.robotframework.text.space.KeywordSetting;
+import org.robotframework.text.space.ListVariable;
+import org.robotframework.text.space.Setting;
+import org.robotframework.text.space.TestCase;
+import org.robotframework.text.space.TestCaseSetting;
 
 /**
  * customization of the default outline structure
@@ -11,4 +19,37 @@ import org.eclipse.xtext.ui.editor.outline.impl.DefaultOutlineTreeProvider;
  */
 public class SpaceOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	
+	protected boolean _isLeaf(ListVariable modelElement) {
+		return true;
+	}
+	
+	protected boolean _isLeaf(TestCaseSetting modelElement) {
+		return true;
+	}
+
+	protected boolean _isLeaf(Setting modelElement) {
+		return true;
+	}
+	
+	protected boolean _isLeaf(IndentedStep modelElement) {
+		return true;
+	}
+	
+	protected void _createChildren(IOutlineNode parentNode, Keyword modelElement) {
+		for(KeywordSetting setting:modelElement.getSettings()){
+			createNode(parentNode, setting.getSetting());
+		}
+		for(IndentedStep step : modelElement.getSteps()){
+			createNode(parentNode, step);
+		}
+	}
+
+	protected void _createChildren(IOutlineNode parentNode, TestCase modelElement) {
+		for(TestCaseSetting setting:modelElement.getSettings()){
+			createNode(parentNode, setting);
+		}
+		for(IndentedStep step : modelElement.getSteps()){
+			createNode(parentNode, step);
+		}
+	}
 }
