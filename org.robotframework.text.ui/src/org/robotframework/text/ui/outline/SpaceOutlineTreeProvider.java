@@ -5,10 +5,10 @@ package org.robotframework.text.ui.outline;
 
 import org.eclipse.xtext.ui.editor.outline.IOutlineNode;
 import org.eclipse.xtext.ui.editor.outline.impl.DefaultOutlineTreeProvider;
-import org.robotframework.text.space.IndentedStep;
 import org.robotframework.text.space.Keyword;
 import org.robotframework.text.space.KeywordSetting;
 import org.robotframework.text.space.ListVariable;
+import org.robotframework.text.space.RobotStep;
 import org.robotframework.text.space.Setting;
 import org.robotframework.text.space.TestCase;
 import org.robotframework.text.space.TestCaseSetting;
@@ -31,7 +31,7 @@ public class SpaceOutlineTreeProvider extends DefaultOutlineTreeProvider {
 		return true;
 	}
 	
-	protected boolean _isLeaf(IndentedStep modelElement) {
+	protected boolean _isLeaf(RobotStep modelElement) {
 		return true;
 	}
 	
@@ -39,7 +39,7 @@ public class SpaceOutlineTreeProvider extends DefaultOutlineTreeProvider {
 		for(KeywordSetting setting:modelElement.getSettings()){
 			createNode(parentNode, setting.getSetting());
 		}
-		for(IndentedStep step : modelElement.getSteps()){
+		for(RobotStep step : modelElement.getSteps()){
 			createNode(parentNode, step);
 		}
 	}
@@ -48,7 +48,7 @@ public class SpaceOutlineTreeProvider extends DefaultOutlineTreeProvider {
 		for(TestCaseSetting setting:modelElement.getSettings()){
 			createNode(parentNode, setting);
 		}
-		for(IndentedStep step : modelElement.getSteps()){
+		for(RobotStep step : modelElement.getSteps()){
 			createNode(parentNode, step);
 		}
 	}

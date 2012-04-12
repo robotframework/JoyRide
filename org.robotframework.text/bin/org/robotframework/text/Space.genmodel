@@ -12,7 +12,9 @@
     <genClasses ecoreClass="Space.ecore#//Model">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Space.ecore#//Model/tables"/>
     </genClasses>
-    <genClasses ecoreClass="Space.ecore#//RobotTable"/>
+    <genClasses ecoreClass="Space.ecore#//RobotTable">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Space.ecore#//RobotTable/header"/>
+    </genClasses>
     <genClasses ecoreClass="Space.ecore#//SettingsTable">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Space.ecore#//SettingsTable/settings"/>
     </genClasses>
@@ -71,12 +73,6 @@
     <genClasses ecoreClass="Space.ecore#//SomeKeywordSetting">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Space.ecore#//SomeKeywordSetting/name"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Space.ecore#//SomeKeywordSetting/value"/>
-    </genClasses>
-    <genClasses ecoreClass="Space.ecore#//IndentedStep">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Space.ecore#//IndentedStep/step"/>
-    </genClasses>
-    <genClasses ecoreClass="Space.ecore#//OneValueSetting">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Space.ecore#//OneValueSetting/value"/>
     </genClasses>
     <genClasses ecoreClass="Space.ecore#//ValuesSetting">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Space.ecore#//ValuesSetting/value"/>

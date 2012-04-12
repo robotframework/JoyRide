@@ -7,62 +7,54 @@ import 'http://www.eclipse.org/emf/2002/Ecore' as ecore
 generate space "http://www.robotframework.org/text/Space"
 
 Model: 
-	(tables+=RobotTable)+;
+	(tables+=RobotTable NL)+;
 
 RobotTable:
 	SettingsTable | TestCaseTable | KeywordTable | VariablesTable;
 
 SettingsTable:
-	SettingsHeader
-	(settings+=Setting)+;
+	header=SettingsTableHeader
+	(NL settings+=Setting)+;
 
-SettingsHeader:
-	'*'* '* Settings *' '*'* NL
-;
+SettingsTableHeader: '*'+ ' Settings ' '*'+;
 
 TestCaseTable:
-	TestCaseHeader
-	(tests+=TestCase)+;
+	header=TestCaseTableHeader
+	(NL tests+=TestCase)+;
 
-TestCaseHeader:
-	'*'* '* Test Cases *' '*'* NL
-;
+TestCaseTableHeader: '*'+ ' Test Cases ' '*'+;
 
 KeywordTable:
-	KeywordTableHeader
-	(keywords+=Keyword)+;
+	header=KeywordTableHeader
+	(NL keywords+=Keyword)+;
 
-KeywordTableHeader:
-	'*'* '* Keywords *' '*'* NL
-;
+KeywordTableHeader:	'*'+ ' Keywords ' '*'+;
 
 VariablesTable:
-	VariablesTableHeader
-	(variables+=Variable)+;
+	header=VariablesTableHeader
+	(NL variables+=Variable)+;
 
-VariablesTableHeader:
-	'*'* '* Variables *' '*'* NL
-;
+VariablesTableHeader: '*'+ ' Variables ' '*'+;
 
 Setting:
-	(OneValueSetting | ValuesSetting | StepSetting);
+	(ValuesSetting | StepSetting);
 
 TestCase:
-	name=MacroName NL
-	(settings+=TestCaseSetting)*
-	(steps+=IndentedStep)+;
+	name=MacroName
+	(NL SEPARATOR settings+=TestCaseSetting)*
+	(NL SEPARATOR steps+=RobotStep)+;
 
 Keyword:
-	name=MacroName NL
-	(settings+=KeywordSetting)*
-	(steps+=IndentedStep)+;
+	name=MacroName
+	(NL SEPARATOR settings+=KeywordSetting)*
+	(NL SEPARATOR steps+=RobotStep)+;
 
 Variable:
 	ScalarVariable | ListVariable
 ;
 
 ScalarVariable:
-	name=ScalarName SEPARATOR  value=RobotText NL
+	name=ScalarName SEPARATOR  value=RobotText
 ;
 
 ListVariable:
@@ -70,7 +62,7 @@ ListVariable:
 ;
 
 TestCaseSetting:
-	SEPARATOR (SetupSetting | TeardownSetting | SomeTestSetting);
+	SetupSetting | TeardownSetting | SomeTestSetting;
 
 SomeTestSetting:
 	name=('[Documentation]' |
@@ -80,14 +72,13 @@ SomeTestSetting:
 	SEPARATOR value=Values;
 
 KeywordSetting:
-    SEPARATOR setting=(ArgumentsSetting | TeardownSetting | SomeKeywordSetting);
+    setting=(ArgumentsSetting | TeardownSetting | SomeKeywordSetting);
 
 ArgumentsSetting:
 	name='[Arguments]'
 	(SEPARATOR args+=ScalarName)*
-	(SEPARATOR default_args+=ScalarName EQ defaults+=RobotText)*
-	(SEPARATOR ListName)?
-	NL;
+	(SEPARATOR default_args+=ScalarName '=' defaults+=RobotText)*
+	(SEPARATOR ListName)?;
 
 TeardownSetting:
     name='[Teardown]' SEPARATOR step=ExecutingStep
@@ -100,67 +91,55 @@ SomeKeywordSetting:
 	name=('[Documentation]' |
 	'[Timeout]' |
 	'[Return]') 
-	SEPARATOR value=Values;
-
-IndentedStep:
-	SEPARATOR step=RobotStep;
-
-OneValueSetting:
-	name=RobotOneValueSetting SEPARATOR value=RobotText NL;
+	SEPARATOR 
+	value=Values;
 
 ValuesSetting:
-	name=RobotValuesSetting SEPARATOR value=Values;
-
-StepSetting:
-	name=RobotStepSetting SEPARATOR value=ExecutingStep;
-
-RobotOneValueSetting:
-	'Documentation' |
-	'Test Timeout'
-;
-
-RobotValuesSetting:
-	'Force Tags' |
+	name=('Force Tags' |
 	'Default Tags' |
 	'Library' |
 	'Resource' |
-	'Test Template'
-;
+	'Test Template' |
+	'Test Timeout' |
+	'Documentation') 
+	SEPARATOR 
+	value=Values;
 
-RobotStepSetting:
-	'Suite Setup' |
+StepSetting:
+	name=('Suite Setup' |
 	'Suite Teardown' |
 	'Test Setup' |
-	'Test Teardown'
-;
+	'Test Teardown') 
+	SEPARATOR 
+	value=ExecutingStep;
 
 RobotStep:
     ExecutingStep | AssigningStep	
 ;
 
 ExecutingStep:
-	keyword=[Keyword|MacroName] (SEPARATOR values+=CellValue)* NL;
+	keyword=[Keyword|MacroName] (SEPARATOR values+=CellValue)*;
 
 AssigningStep:
 	(vars+=[Variable|ScalarName] SEPARATOR)* 
-	(vars+=[Variable|ScalarName] | vars+=[Variable|ListName]) EQ? 
+	(vars+=[Variable|ScalarName] | vars+=[Variable|ListName]) '='? 
 	SEPARATOR keyword=[Keyword|MacroName] 
-	(SEPARATOR values+=CellValue)* NL
+	(SEPARATOR values+=CellValue)*
 ;
 
 CellValue: {CellValue}
-	f=RobotText | link=[ScalarVariable | ScalarName]
+	f=RobotText | link=[ScalarVariable|ScalarName]
 ;
 
 Values:
-	val=RobotText (SEPARATOR others+=RobotText)* NL;
+	val=RobotText (SEPARATOR others+=RobotText)*;
 
 ScalarName:
-	DOLLAR LBRACKET RobotText RBRACKET
+	'${' RobotText '}'
 ;
 
 ListName:
-	ATSIGN LBRACKET RobotText RBRACKET
+	'@{' RobotText '}'
 ;
 
 RobotText: ('*' | TEXT) ((' ' | '*') TEXT)*;
@@ -172,11 +151,5 @@ terminal SEPARATOR: ' '' '+;
 terminal NL: ('\r'|'\n')+;
 
 terminal TEXT: !('='|' '|'\r'|'\n'|'*'|'{'|'}'|'$'|'@')+;
-
-terminal RBRACKET: '}';
-terminal LBRACKET: '{';
-terminal DOLLAR: '$';
-terminal ATSIGN: '@';
-terminal EQ: '=';
 
 terminal COMMENT: ' '* '#' !('\r'|'\n')*;
