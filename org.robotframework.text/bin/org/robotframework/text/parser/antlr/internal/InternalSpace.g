@@ -2241,11 +2241,11 @@ ruleMacroName returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken
 
 
 
-RULE_SEPARATOR : ' ' ' '+;
-
 RULE_NL : ('\r'|'\n')+;
 
 RULE_TEXT : ~(('='|' '|'\r'|'\n'|'*'|'{'|'}'|'$'|'@'))+;
+
+RULE_SEPARATOR : ' ' ' '+;
 
 RULE_COMMENT : ' '* '#' ~(('\r'|'\n'))*;
 

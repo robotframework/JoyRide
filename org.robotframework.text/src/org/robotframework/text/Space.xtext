@@ -146,10 +146,10 @@ RobotText: ('*' | TEXT) ((' ' | '*') TEXT)*;
 
 MacroName: TEXT ((' ' | '*') TEXT)*;
 
-terminal SEPARATOR: ' '' '+;
-
 terminal NL: ('\r'|'\n')+;
 
 terminal TEXT: !('='|' '|'\r'|'\n'|'*'|'{'|'}'|'$'|'@')+;
+
+terminal SEPARATOR: ' '' '+;
 
 terminal COMMENT: ' '* '#' !('\r'|'\n')*;
