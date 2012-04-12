@@ -5,6 +5,7 @@ grammar InternalSpace;
 
 options {
 	superClass=AbstractInternalContentAssistParser;
+	backtrack=true;
 	
 }
 
@@ -72,16 +73,9 @@ ruleModel
     }
 	:
 (
-(
 { before(grammarAccess.getModelAccess().getGroup()); }
 (rule__Model__Group__0)
 { after(grammarAccess.getModelAccess().getGroup()); }
-)
-(
-{ before(grammarAccess.getModelAccess().getGroup()); }
-(rule__Model__Group__0)*
-{ after(grammarAccess.getModelAccess().getGroup()); }
-)
 )
 
 ;
@@ -1496,9 +1490,9 @@ rule__Model__Group__0__Impl
     }
 :
 (
-{ before(grammarAccess.getModelAccess().getTablesAssignment_0()); }
-(rule__Model__TablesAssignment_0)
-{ after(grammarAccess.getModelAccess().getTablesAssignment_0()); }
+{ before(grammarAccess.getModelAccess().getRobotTableParserRuleCall_0()); }
+	ruleRobotTable
+{ after(grammarAccess.getModelAccess().getRobotTableParserRuleCall_0()); }
 )
 
 ;
@@ -1513,6 +1507,7 @@ rule__Model__Group__1
     }
 :
 	rule__Model__Group__1__Impl
+	rule__Model__Group__2
 ;
 finally {
 	restoreStackSize(stackSize);
@@ -1533,6 +1528,36 @@ rule__Model__Group__1__Impl
 finally {
 	restoreStackSize(stackSize);
 }
+
+
+rule__Model__Group__2
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+	rule__Model__Group__2__Impl
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__Model__Group__2__Impl
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+(
+{ before(grammarAccess.getModelAccess().getModelParserRuleCall_2()); }
+(	ruleModel)?
+{ after(grammarAccess.getModelAccess().getModelParserRuleCall_2()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+
 
 
 
@@ -5243,21 +5268,6 @@ finally {
 
 
 
-
-rule__Model__TablesAssignment_0
-    @init {
-		int stackSize = keepStackSize();
-    }
-:
-(
-{ before(grammarAccess.getModelAccess().getTablesRobotTableParserRuleCall_0_0()); }
-	ruleRobotTable{ after(grammarAccess.getModelAccess().getTablesRobotTableParserRuleCall_0_0()); }
-)
-
-;
-finally {
-	restoreStackSize(stackSize);
-}
 
 rule__SettingsTable__HeaderAssignment_0
     @init {
