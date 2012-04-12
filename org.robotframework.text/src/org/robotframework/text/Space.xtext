@@ -17,7 +17,7 @@ SettingsTable:
 	(settings+=Setting)+;
 
 SettingsHeader:
-	STARS ' Settings ' STARS NL
+	'*'* '* Settings *' '*'* NL
 ;
 
 TestCaseTable:
@@ -25,7 +25,7 @@ TestCaseTable:
 	(tests+=TestCase)+;
 
 TestCaseHeader:
-	STARS ' Test Cases ' STARS NL
+	'*'* '* Test Cases *' '*'* NL
 ;
 
 KeywordTable:
@@ -33,7 +33,7 @@ KeywordTable:
 	(keywords+=Keyword)+;
 
 KeywordTableHeader:
-	STARS ' Keywords ' STARS NL
+	'*'* '* Keywords *' '*'* NL
 ;
 
 VariablesTable:
@@ -41,7 +41,7 @@ VariablesTable:
 	(variables+=Variable)+;
 
 VariablesTableHeader:
-	STARS ' Variables ' STARS NL
+	'*'* '* Variables *' '*'* NL
 ;
 
 Setting:
@@ -163,7 +163,7 @@ ListName:
 	ATSIGN LBRACKET RobotText RBRACKET
 ;
 
-RobotText: (STARS | TEXT) ((' ' | STARS) TEXT)*;
+RobotText: ('*' | TEXT) ((' ' | '*') TEXT)*;
 
 MacroName: TEXT ((' ' | '*') TEXT)*;
 
@@ -172,8 +172,6 @@ terminal SEPARATOR: ' '' '+;
 terminal NL: ('\r'|'\n')+;
 
 terminal TEXT: !('='|' '|'\r'|'\n'|'*'|'{'|'}'|'$'|'@')+;
-
-terminal STARS: '*'+;
 
 terminal RBRACKET: '}';
 terminal LBRACKET: '{';

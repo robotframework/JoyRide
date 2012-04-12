@@ -223,27 +223,25 @@ ruleSettingsHeader returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRule
     @init { enterRule(); 
     }
     @after { leaveRule(); }:
-(    this_STARS_0=RULE_STARS    {
-		$current.merge(this_STARS_0);
+((
+	kw='*' 
+    {
+        $current.merge(kw);
+        newLeafNode(kw, grammarAccess.getSettingsHeaderAccess().getAsteriskKeyword_0()); 
     }
-
-    { 
-    newLeafNode(this_STARS_0, grammarAccess.getSettingsHeaderAccess().getSTARSTerminalRuleCall_0()); 
-    }
-
-	kw=' Settings ' 
+)*
+	kw='* Settings *' 
     {
         $current.merge(kw);
         newLeafNode(kw, grammarAccess.getSettingsHeaderAccess().getSettingsKeyword_1()); 
     }
-    this_STARS_2=RULE_STARS    {
-		$current.merge(this_STARS_2);
+(
+	kw='*' 
+    {
+        $current.merge(kw);
+        newLeafNode(kw, grammarAccess.getSettingsHeaderAccess().getAsteriskKeyword_2()); 
     }
-
-    { 
-    newLeafNode(this_STARS_2, grammarAccess.getSettingsHeaderAccess().getSTARSTerminalRuleCall_2()); 
-    }
-    this_NL_3=RULE_NL    {
+)*    this_NL_3=RULE_NL    {
 		$current.merge(this_NL_3);
     }
 
@@ -318,27 +316,25 @@ ruleTestCaseHeader returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRule
     @init { enterRule(); 
     }
     @after { leaveRule(); }:
-(    this_STARS_0=RULE_STARS    {
-		$current.merge(this_STARS_0);
+((
+	kw='*' 
+    {
+        $current.merge(kw);
+        newLeafNode(kw, grammarAccess.getTestCaseHeaderAccess().getAsteriskKeyword_0()); 
     }
-
-    { 
-    newLeafNode(this_STARS_0, grammarAccess.getTestCaseHeaderAccess().getSTARSTerminalRuleCall_0()); 
-    }
-
-	kw=' Test Cases ' 
+)*
+	kw='* Test Cases *' 
     {
         $current.merge(kw);
         newLeafNode(kw, grammarAccess.getTestCaseHeaderAccess().getTestCasesKeyword_1()); 
     }
-    this_STARS_2=RULE_STARS    {
-		$current.merge(this_STARS_2);
+(
+	kw='*' 
+    {
+        $current.merge(kw);
+        newLeafNode(kw, grammarAccess.getTestCaseHeaderAccess().getAsteriskKeyword_2()); 
     }
-
-    { 
-    newLeafNode(this_STARS_2, grammarAccess.getTestCaseHeaderAccess().getSTARSTerminalRuleCall_2()); 
-    }
-    this_NL_3=RULE_NL    {
+)*    this_NL_3=RULE_NL    {
 		$current.merge(this_NL_3);
     }
 
@@ -413,27 +409,25 @@ ruleKeywordTableHeader returns [AntlrDatatypeRuleToken current=new AntlrDatatype
     @init { enterRule(); 
     }
     @after { leaveRule(); }:
-(    this_STARS_0=RULE_STARS    {
-		$current.merge(this_STARS_0);
+((
+	kw='*' 
+    {
+        $current.merge(kw);
+        newLeafNode(kw, grammarAccess.getKeywordTableHeaderAccess().getAsteriskKeyword_0()); 
     }
-
-    { 
-    newLeafNode(this_STARS_0, grammarAccess.getKeywordTableHeaderAccess().getSTARSTerminalRuleCall_0()); 
-    }
-
-	kw=' Keywords ' 
+)*
+	kw='* Keywords *' 
     {
         $current.merge(kw);
         newLeafNode(kw, grammarAccess.getKeywordTableHeaderAccess().getKeywordsKeyword_1()); 
     }
-    this_STARS_2=RULE_STARS    {
-		$current.merge(this_STARS_2);
+(
+	kw='*' 
+    {
+        $current.merge(kw);
+        newLeafNode(kw, grammarAccess.getKeywordTableHeaderAccess().getAsteriskKeyword_2()); 
     }
-
-    { 
-    newLeafNode(this_STARS_2, grammarAccess.getKeywordTableHeaderAccess().getSTARSTerminalRuleCall_2()); 
-    }
-    this_NL_3=RULE_NL    {
+)*    this_NL_3=RULE_NL    {
 		$current.merge(this_NL_3);
     }
 
@@ -508,27 +502,25 @@ ruleVariablesTableHeader returns [AntlrDatatypeRuleToken current=new AntlrDataty
     @init { enterRule(); 
     }
     @after { leaveRule(); }:
-(    this_STARS_0=RULE_STARS    {
-		$current.merge(this_STARS_0);
+((
+	kw='*' 
+    {
+        $current.merge(kw);
+        newLeafNode(kw, grammarAccess.getVariablesTableHeaderAccess().getAsteriskKeyword_0()); 
     }
-
-    { 
-    newLeafNode(this_STARS_0, grammarAccess.getVariablesTableHeaderAccess().getSTARSTerminalRuleCall_0()); 
-    }
-
-	kw=' Variables ' 
+)*
+	kw='* Variables *' 
     {
         $current.merge(kw);
         newLeafNode(kw, grammarAccess.getVariablesTableHeaderAccess().getVariablesKeyword_1()); 
     }
-    this_STARS_2=RULE_STARS    {
-		$current.merge(this_STARS_2);
+(
+	kw='*' 
+    {
+        $current.merge(kw);
+        newLeafNode(kw, grammarAccess.getVariablesTableHeaderAccess().getAsteriskKeyword_2()); 
     }
-
-    { 
-    newLeafNode(this_STARS_2, grammarAccess.getVariablesTableHeaderAccess().getSTARSTerminalRuleCall_2()); 
-    }
-    this_NL_3=RULE_NL    {
+)*    this_NL_3=RULE_NL    {
 		$current.merge(this_NL_3);
     }
 
@@ -2297,12 +2289,11 @@ ruleRobotText returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken
     @init { enterRule(); 
     }
     @after { leaveRule(); }:
-((    this_STARS_0=RULE_STARS    {
-		$current.merge(this_STARS_0);
-    }
-
-    { 
-    newLeafNode(this_STARS_0, grammarAccess.getRobotTextAccess().getSTARSTerminalRuleCall_0_0()); 
+((
+	kw='*' 
+    {
+        $current.merge(kw);
+        newLeafNode(kw, grammarAccess.getRobotTextAccess().getAsteriskKeyword_0_0()); 
     }
 
     |    this_TEXT_1=RULE_TEXT    {
@@ -2319,12 +2310,11 @@ ruleRobotText returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken
         newLeafNode(kw, grammarAccess.getRobotTextAccess().getSpaceKeyword_1_0_0()); 
     }
 
-    |    this_STARS_3=RULE_STARS    {
-		$current.merge(this_STARS_3);
-    }
-
-    { 
-    newLeafNode(this_STARS_3, grammarAccess.getRobotTextAccess().getSTARSTerminalRuleCall_1_0_1()); 
+    |
+	kw='*' 
+    {
+        $current.merge(kw);
+        newLeafNode(kw, grammarAccess.getRobotTextAccess().getAsteriskKeyword_1_0_1()); 
     }
 )    this_TEXT_4=RULE_TEXT    {
 		$current.merge(this_TEXT_4);
@@ -2393,8 +2383,6 @@ RULE_SEPARATOR : ' ' ' '+;
 RULE_NL : ('\r'|'\n')+;
 
 RULE_TEXT : ~(('='|' '|'\r'|'\n'|'*'|'{'|'}'|'$'|'@'))+;
-
-RULE_STARS : '*'+;
 
 RULE_RBRACKET : '}';
 
