@@ -1,8 +1,8 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: org.robotframework.text.ui
-Bundle-Vendor: My Company
-Bundle-Version: 1.0.0
+Bundle-Name: JoyRide
+Bundle-Vendor: Robot Framework
+Bundle-Version: 0.0.1
 Bundle-SymbolicName: org.robotframework.text.ui; singleton:=true
 Bundle-ActivationPolicy: lazy
 Require-Bundle: org.robotframework.text;visibility:=reexport,
@@ -18,7 +18,7 @@ Require-Bundle: org.robotframework.text;visibility:=reexport,
  org.eclipse.compare
 Import-Package: org.apache.log4j,
  org.apache.commons.logging
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Export-Package: org.robotframework.text.ui.contentassist,
  org.robotframework.text.ui.contentassist.antlr,
  org.robotframework.text.ui.internal
