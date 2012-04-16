@@ -103,6 +103,20 @@ public class SpaceProposalProvider extends AbstractSpaceProposalProvider {
 			"Wait Until Keyword Succeeds"
 	};
 	
+	private static final String[] SETTING_NAMES = new String[]{
+		    "Documentation",
+		    "Default Tags",
+		    "Force Tags",
+		    "Library",
+		    "Resource",
+		    "Test Template",
+		    "Test Timeout",
+		    "Suite Setup",
+		    "Suite Teardown",
+		    "Test Setup",
+		    "Test Teardown"
+	};
+	
 	private static final String[] KEYWORD_SETTING = new String[]{
 			"[Arguments]",
 			"[Teardown]",
@@ -173,5 +187,13 @@ public class SpaceProposalProvider extends AbstractSpaceProposalProvider {
 		super.completeTestCase_Settings(model, assignment, context, acceptor);
 		for(String testCaseSetting: TESTCASE_SETTING)
 			acceptor.accept(createCompletionProposal(testCaseSetting+"  ", context));
+	}
+	
+	@Override
+	public void complete_Setting(EObject model, RuleCall ruleCall,
+			ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
+		super.complete_Setting(model, ruleCall, context, acceptor);
+		for(String setting: SETTING_NAMES)
+			acceptor.accept(createCompletionProposal(setting+"  ", context));
 	}
 }
