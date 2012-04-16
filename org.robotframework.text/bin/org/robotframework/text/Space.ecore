@@ -3,8 +3,11 @@
     xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="space"
     nsURI="http://www.robotframework.org/text/Space" nsPrefix="space">
-  <eClassifiers xsi:type="ecore:EClass" name="Model"/>
-  <eClassifiers xsi:type="ecore:EClass" name="RobotTable" eSuperTypes="#//Model">
+  <eClassifiers xsi:type="ecore:EClass" name="Model">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="tables" upperBound="-1"
+        eType="#//RobotTable" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="RobotTable">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="header" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SettingsTable" eSuperTypes="#//RobotTable">
@@ -103,7 +106,8 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CellValue">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="f" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="link" eType="#//ScalarVariable"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="scalarlink" eType="#//ScalarVariable"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="listlink" eType="#//ListVariable"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Values">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="val" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>

@@ -7,7 +7,7 @@ import 'http://www.eclipse.org/emf/2002/Ecore' as ecore
 generate space "http://www.robotframework.org/text/Space"
 
 Model: 
-	RobotTable NL (=> Model)?;
+	(tables+=RobotTable NL)+;
 
 RobotTable:
 	SettingsTable | TestCaseTable | KeywordTable | VariablesTable;
@@ -16,25 +16,25 @@ SettingsTable:
 	header=SettingsTableHeader
 	(NL settings+=Setting)+;
 
-SettingsTableHeader: '*'+ ' Settings ' '*'+;
+SettingsTableHeader: '*'+ ' ' SETTINGS ' ' '*'+;
 
 TestCaseTable:
 	header=TestCaseTableHeader
 	(NL tests+=TestCase)+;
 
-TestCaseTableHeader: '*'+ ' Test Cases ' '*'+;
+TestCaseTableHeader: '*'+ ' ' TEST ' ' CASES ' ' '*'+;
 
 KeywordTable:
 	header=KeywordTableHeader
 	(NL keywords+=Keyword)+;
 
-KeywordTableHeader:	'*'+ ' Keywords ' '*'+;
+KeywordTableHeader:	'*'+ ' ' KEYWORDS ' ' '*'+;
 
 VariablesTable:
 	header=VariablesTableHeader
 	(NL variables+=Variable)+;
 
-VariablesTableHeader: '*'+ ' Variables ' '*'+;
+VariablesTableHeader: '*'+ ' ' VARIABLES ' ' '*'+;
 
 Setting:
 	(ValuesSetting | StepSetting);
@@ -65,53 +65,76 @@ TestCaseSetting:
 	SetupSetting | TeardownSetting | SomeTestSetting;
 
 SomeTestSetting:
-	name=('[Documentation]' |
-	'[Timeout]' |
-	'[Tags]' |
-	'[Template]') 
+	name=(DocumentationMacroSettingName |
+	TimeoutSettingName |
+	TagsTestSettingName |
+	TemplateTestSettingName) 
 	SEPARATOR value=Values;
+
+TagsTestSettingName: '['TAGS']';
+TemplateTestSettingName: '['TEMPLATE']';
 
 KeywordSetting:
     setting=(ArgumentsSetting | TeardownSetting | SomeKeywordSetting);
 
 ArgumentsSetting:
-	name='[Arguments]'
+	name=ArgumentsSettingName
 	(SEPARATOR args+=ScalarName)*
 	(SEPARATOR default_args+=ScalarName '=' defaults+=RobotText)*
 	(SEPARATOR ListName)?;
 
+ArgumentsSettingName: '[' ARGUMENTS ']';
+
 TeardownSetting:
-    name='[Teardown]' SEPARATOR step=ExecutingStep
+    name=TeardownSettingName SEPARATOR step=ExecutingStep
 ;
 
+TeardownSettingName: '['TEARDOWN']';
+
 SetupSetting:
-    name='[Setup]' SEPARATOR step=ExecutingStep;
+    name=SetupSettingName SEPARATOR step=ExecutingStep;
+
+SetupSettingName: '['SETUP']';
 
 SomeKeywordSetting:
-	name=('[Documentation]' |
-	'[Timeout]' |
-	'[Return]') 
+	name=(DocumentationMacroSettingName |
+	TimeoutSettingName |
+	ReturnKeywordSettingName) 
 	SEPARATOR 
 	value=Values;
+
+TimeoutSettingName: '[' TIMEOUT ']';
+DocumentationMacroSettingName: '['DOCUMENTATION']';
+ReturnKeywordSettingName: '[' RETURN ']';
 
 ValuesSetting:
-	name=('Force Tags' |
-	'Default Tags' |
-	'Library' |
-	'Resource' |
-	'Test Template' |
-	'Test Timeout' |
-	'Documentation') 
+	name=(ForceTags |
+	DefaultTags |
+	LIBRARY |
+	RESOURCE |
+	TestTemplate |
+	TestTimeout |
+	DOCUMENTATION) 
 	SEPARATOR 
 	value=Values;
 
+ForceTags: FORCE' 'TAGS;
+DefaultTags: DEFAULT' 'TAGS;
+TestTemplate: TEST ' ' TEMPLATE;
+TestTimeout: TEST ' ' TIMEOUT;
+
 StepSetting:
-	name=('Suite Setup' |
-	'Suite Teardown' |
-	'Test Setup' |
-	'Test Teardown') 
+	name=( SuiteSetup |
+	SuiteTeardown |
+	TestSetup |
+	TestTeardown) 
 	SEPARATOR 
 	value=ExecutingStep;
+
+SuiteSetup:    SUITE' 'SETUP;
+SuiteTeardown: SUITE' 'TEARDOWN;
+TestSetup:     TEST' 'SETUP;
+TestTeardown:  TEST' 'TEARDOWN;
 
 RobotStep:
     ExecutingStep | AssigningStep	
@@ -128,27 +151,53 @@ AssigningStep:
 ;
 
 CellValue: {CellValue}
-	f=RobotText | link=[ScalarVariable|ScalarName]
+	f=RobotText | scalarlink=[ScalarVariable|ScalarName] | listlink=[ListVariable|ListName]
 ;
 
 Values:
 	val=RobotText (SEPARATOR others+=RobotText)*;
 
 ScalarName:
-	'${' RobotText '}'
+	'$' '{' RobotText '}'
 ;
 
 ListName:
-	'@{' RobotText '}'
+	'@' '{' RobotText '}'
 ;
 
-RobotText: ('*' | TEXT) ((' ' | '*') TEXT)*;
+RobotText: ('*' | TextOrReservedWord) ((' ' | '*') TextOrReservedWord)*;
 
-MacroName: TEXT ((' ' | '*') TEXT)*;
+MacroName: TextOrReservedWord ((' ' | '*') TextOrReservedWord)*;
+
+TextOrReservedWord: TEXT | TEST | CASES | SETTINGS | 
+	                KEYWORDS | VARIABLES | SUITE | SETUP |
+	                TEARDOWN | TAGS | TIMEOUT | TEMPLATE |
+	                DEFAULT | FORCE | DOCUMENTATION | RESOURCE |
+	                LIBRARY | RETURN | ARGUMENTS
+;
 
 terminal NL: ('\r'|'\n')+;
 
-terminal TEXT: !('='|' '|'\r'|'\n'|'*'|'{'|'}'|'$'|'@')+;
+terminal TEST: 'Test';
+terminal CASES: 'Cases';
+terminal SETTINGS: 'Settings';
+terminal KEYWORDS: 'Keywords';
+terminal VARIABLES: 'Variables';
+terminal SUITE: 'Suite';
+terminal SETUP: 'Setup';
+terminal TEARDOWN: 'Teardown';
+terminal TAGS: 'Tags';
+terminal TIMEOUT: 'Timeout';
+terminal TEMPLATE: 'Template';
+terminal DEFAULT: 'Default';
+terminal FORCE: 'Force';
+terminal DOCUMENTATION: 'Documentation';
+terminal RESOURCE: 'Resource';
+terminal LIBRARY: 'Library';
+terminal RETURN: 'Return';
+terminal ARGUMENTS: 'Arguments';
+
+terminal TEXT: !('='|' '|'\r'|'\n'|'*'|'{'|'}'|'$'|'@'|'['|']')+;
 
 terminal SEPARATOR: ' '' '+;
 
