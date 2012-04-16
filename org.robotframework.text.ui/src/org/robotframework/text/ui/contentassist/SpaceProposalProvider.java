@@ -102,43 +102,76 @@ public class SpaceProposalProvider extends AbstractSpaceProposalProvider {
 			"Variable Should Not Exist",
 			"Wait Until Keyword Succeeds"
 	};
-
+	
+	private static final String[] KEYWORD_SETTING = new String[]{
+			"[Arguments]",
+			"[Teardown]",
+			"[Documentation]",
+			"[Timeout]",
+			"[Return]"
+	};
+	
+	private static final String[] TESTCASE_SETTING = new String[]{
+			"[Tags]",
+			"[Setup]",
+			"[Teardown]",
+			"[Documentation]",
+			"[Timeout]",
+			"[Template]"
+	};
+	
 	@Override
-	public void complete_TestCaseTable(EObject model, RuleCall ruleCall,
+	public void complete_KeywordTableHeader(EObject model, RuleCall ruleCall,
+			ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
+		super.complete_KeywordTableHeader(model, ruleCall, context, acceptor);
+		acceptor.accept(createCompletionProposal("*** Keywords ***\n", context));
+	}
+	
+	@Override
+	public void complete_TestCaseTableHeader(EObject model, RuleCall ruleCall,
 			ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
 		super.complete_TestCaseTable(model, ruleCall, context, acceptor);
 		acceptor.accept(createCompletionProposal("*** Test Cases ***\n", context));
 	}
 	
 	@Override
-	public void complete_KeywordTable(EObject model, RuleCall ruleCall,
-			ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
-		super.complete_KeywordTable(model, ruleCall, context, acceptor);
-		acceptor.accept(createCompletionProposal("*** Keywords ***\n", context));
-	}
-	
-
-	@Override
-	public void complete_SettingsTable(EObject model, RuleCall ruleCall,
+	public void complete_SettingsTableHeader(EObject model, RuleCall ruleCall,
 			ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
 		super.complete_SettingsTable(model, ruleCall, context, acceptor);
 		acceptor.accept(createCompletionProposal("*** Settings ***\n", context));
 	}
 	
 	@Override
-	public void complete_VariablesTable(EObject model, RuleCall ruleCall,
+	public void complete_VariablesTableHeader(EObject model, RuleCall ruleCall,
 			ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
 		super.complete_VariablesTable(model, ruleCall, context, acceptor);
 		acceptor.accept(createCompletionProposal("*** Variables ***\n", context));
 	}
-	
+
 	@Override
 	public void completeExecutingStep_Keyword(EObject model,
 			Assignment assignment, ContentAssistContext context,
 			ICompletionProposalAcceptor acceptor) {
 		super.completeExecutingStep_Keyword(model, assignment, context, acceptor);
 		for(String kw: BUILTIN_KEYWORDS){
-			acceptor.accept(createCompletionProposal(kw, context));
+			acceptor.accept(createCompletionProposal(kw+"  ", context));
 		}
+	}
+	
+	@Override
+	public void completeKeywordSetting_Setting(EObject model,
+			Assignment assignment, ContentAssistContext context,
+			ICompletionProposalAcceptor acceptor) {
+		super.completeKeywordSetting_Setting(model, assignment, context, acceptor);
+		for(String keywordSetting: KEYWORD_SETTING)
+			acceptor.accept(createCompletionProposal(keywordSetting+"  ", context));
+	}
+	
+	@Override
+	public void completeTestCase_Settings(EObject model, Assignment assignment,
+			ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
+		super.completeTestCase_Settings(model, assignment, context, acceptor);
+		for(String testCaseSetting: TESTCASE_SETTING)
+			acceptor.accept(createCompletionProposal(testCaseSetting+"  ", context));
 	}
 }
