@@ -141,17 +141,13 @@ RobotStep:
 ;
 
 ExecutingStep:
-	keyword=[Keyword|MacroName] (SEPARATOR values+=CellValue)*;
+	keyword=[Keyword|MacroName] (SEPARATOR values+=RobotText)*;
 
 AssigningStep:
 	(vars+=[Variable|ScalarName] SEPARATOR)* 
 	(vars+=[Variable|ScalarName] | vars+=[Variable|ListName]) (' '? '=')? 
 	SEPARATOR keyword=[Keyword|MacroName] 
-	(SEPARATOR values+=CellValue)*
-;
-
-CellValue: {CellValue}
-	f=RobotText | scalarlink=[ScalarVariable|ScalarName] | listlink=[ListVariable|ListName]
+	(SEPARATOR values+=RobotText)*
 ;
 
 Values:
@@ -178,7 +174,7 @@ ReservedWord: TEST | CASES | SETTINGS |
 	          LIBRARY | RETURN | ARGUMENTS
 ;
 
-SpecialChar: '*'|'['|']'|'=';
+SpecialChar: '*'|'['|']'|'='|'$'|'@'|'{';
 
 terminal NL: ('\r'|'\n')+;
 
