@@ -165,11 +165,11 @@ ListName:
 	'@' '{' RobotText '}'
 ;
 
-RobotText: (SpecialChar ' '?)? (TEXT | ReservedWord) RobotTextPostfix*;
+RobotText: (SpecialChar | TEXT | ReservedWord)+ RobotTextPostfix*;
 
 MacroName: (TEXT | ReservedWord) RobotTextPostfix*;
 
-RobotTextPostfix: (' ' | SpecialChar ) (TEXT | ReservedWord);
+RobotTextPostfix: ' ' (SpecialChar | TEXT | ReservedWord)+;
 
 ReservedWord: TEST | CASES | SETTINGS | 
 	          KEYWORDS | VARIABLES | SUITE | SETUP |
