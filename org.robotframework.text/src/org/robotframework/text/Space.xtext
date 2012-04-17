@@ -145,7 +145,7 @@ ExecutingStep:
 
 AssigningStep:
 	(vars+=[Variable|ScalarName] SEPARATOR)* 
-	(vars+=[Variable|ScalarName] | vars+=[Variable|ListName]) '='? 
+	(vars+=[Variable|ScalarName] | vars+=[Variable|ListName]) (' '? '=')? 
 	SEPARATOR keyword=[Keyword|MacroName] 
 	(SEPARATOR values+=CellValue)*
 ;
@@ -165,16 +165,20 @@ ListName:
 	'@' '{' RobotText '}'
 ;
 
-RobotText: ('*' | TextOrReservedWord) ((' ' | '*') TextOrReservedWord)*;
+RobotText: (SpecialChar ' '?)? (TEXT | ReservedWord) RobotTextPostfix*;
 
-MacroName: TextOrReservedWord ((' ' | '*') TextOrReservedWord)*;
+MacroName: (TEXT | ReservedWord) RobotTextPostfix*;
 
-TextOrReservedWord: TEXT | TEST | CASES | SETTINGS | 
-	                KEYWORDS | VARIABLES | SUITE | SETUP |
-	                TEARDOWN | TAGS | TIMEOUT | TEMPLATE |
-	                DEFAULT | FORCE | DOCUMENTATION | RESOURCE |
-	                LIBRARY | RETURN | ARGUMENTS
+RobotTextPostfix: (' ' | SpecialChar ) (TEXT | ReservedWord);
+
+ReservedWord: TEST | CASES | SETTINGS | 
+	          KEYWORDS | VARIABLES | SUITE | SETUP |
+	          TEARDOWN | TAGS | TIMEOUT | TEMPLATE |
+	          DEFAULT | FORCE | DOCUMENTATION | RESOURCE |
+	          LIBRARY | RETURN | ARGUMENTS
 ;
+
+SpecialChar: '*'|'['|']'|'=';
 
 terminal NL: ('\r'|'\n')+;
 
