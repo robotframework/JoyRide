@@ -152,18 +152,19 @@ Values:
 	val=RobotText (SEPARATOR others+=RobotText)*;
 
 ScalarName:
-	'$' '{' RobotText '}'
-;
+	'$' '{' RobotTextWithoutVariableName '}';
 
 ListName:
-	'@' '{' RobotText '}'
+	'@' '{' RobotTextWithoutVariableName '}'
 ;
 
-RobotText: (SpecialChar | TEXT | ReservedWord)+ RobotTextPostfix*;
+RobotText: RobotTextPart (' ' RobotTextPart)*;
 
-MacroName: (TEXT | ReservedWord) RobotTextPostfix*;
+RobotTextPart: (SpecialChar | TEXT | ReservedWord | ScalarName | ListName)+;
 
-RobotTextPostfix: ' ' (SpecialChar | TEXT | ReservedWord)+;
+RobotTextWithoutVariableName: (SpecialChar | TEXT | ReservedWord)+ (' ' (SpecialChar | TEXT | ReservedWord)+)*;
+
+MacroName: (TEXT | ReservedWord) (' ' RobotTextPart)*;
 
 ReservedWord: TEST | CASES | SETTINGS | 
 	          KEYWORDS | VARIABLES | SUITE | SETUP |
@@ -172,7 +173,7 @@ ReservedWord: TEST | CASES | SETTINGS |
 	          LIBRARY | RETURN | ARGUMENTS
 ;
 
-SpecialChar: '*'|'['|']'|'='|'$'|'@'|'{';
+SpecialChar: '*'|'['|']'|'='|'{';
 
 terminal NL: ('\r'|'\n')+;
 
