@@ -82,16 +82,11 @@
     </genClasses>
     <genClasses ecoreClass="Space.ecore#//RobotStep">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Space.ecore#//RobotStep/keyword"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Space.ecore#//RobotStep/values"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Space.ecore#//RobotStep/values"/>
     </genClasses>
     <genClasses ecoreClass="Space.ecore#//ExecutingStep"/>
     <genClasses ecoreClass="Space.ecore#//AssigningStep">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Space.ecore#//AssigningStep/vars"/>
-    </genClasses>
-    <genClasses ecoreClass="Space.ecore#//CellValue">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Space.ecore#//CellValue/f"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Space.ecore#//CellValue/scalarlink"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Space.ecore#//CellValue/listlink"/>
     </genClasses>
     <genClasses ecoreClass="Space.ecore#//Values">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Space.ecore#//Values/val"/>

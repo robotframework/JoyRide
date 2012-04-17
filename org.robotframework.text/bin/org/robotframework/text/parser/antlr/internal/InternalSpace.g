@@ -2566,9 +2566,9 @@ ruleExecutingStep returns [EObject current=null]
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getExecutingStepAccess().getValuesCellValueParserRuleCall_1_1_0()); 
+	        newCompositeNode(grammarAccess.getExecutingStepAccess().getValuesRobotTextParserRuleCall_1_1_0()); 
 	    }
-		lv_values_2_0=ruleCellValue		{
+		lv_values_2_0=ruleRobotText		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getExecutingStepRule());
 	        }
@@ -2576,7 +2576,7 @@ ruleExecutingStep returns [EObject current=null]
        			$current, 
        			"values",
         		lv_values_2_0, 
-        		"CellValue");
+        		"RobotText");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -2686,9 +2686,9 @@ ruleAssigningStep returns [EObject current=null]
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getAssigningStepAccess().getValuesCellValueParserRuleCall_5_1_0()); 
+	        newCompositeNode(grammarAccess.getAssigningStepAccess().getValuesRobotTextParserRuleCall_5_1_0()); 
 	    }
-		lv_values_9_0=ruleCellValue		{
+		lv_values_9_0=ruleRobotText		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getAssigningStepRule());
 	        }
@@ -2696,89 +2696,12 @@ ruleAssigningStep returns [EObject current=null]
        			$current, 
        			"values",
         		lv_values_9_0, 
-        		"CellValue");
-	        afterParserOrEnumRuleCall();
-	    }
-
-)
-))*)
-;
-
-
-
-
-
-// Entry rule entryRuleCellValue
-entryRuleCellValue returns [EObject current=null] 
-	:
-	{ newCompositeNode(grammarAccess.getCellValueRule()); }
-	 iv_ruleCellValue=ruleCellValue 
-	 { $current=$iv_ruleCellValue.current; } 
-	 EOF 
-;
-
-// Rule CellValue
-ruleCellValue returns [EObject current=null] 
-    @init { enterRule(); 
-    }
-    @after { leaveRule(); }:
-(((
-    {
-        $current = forceCreateModelElement(
-            grammarAccess.getCellValueAccess().getCellValueAction_0_0(),
-            $current);
-    }
-)(
-(
-		{ 
-	        newCompositeNode(grammarAccess.getCellValueAccess().getFRobotTextParserRuleCall_0_1_0()); 
-	    }
-		lv_f_1_0=ruleRobotText		{
-	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getCellValueRule());
-	        }
-       		set(
-       			$current, 
-       			"f",
-        		lv_f_1_0, 
         		"RobotText");
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
-))
-    |(
-(
-		{
-			if ($current==null) {
-	            $current = createModelElement(grammarAccess.getCellValueRule());
-	        }
-        }
-		{ 
-	        newCompositeNode(grammarAccess.getCellValueAccess().getScalarlinkScalarVariableCrossReference_1_0()); 
-	    }
-		ruleScalarName		{ 
-	        afterParserOrEnumRuleCall();
-	    }
-
-)
-)
-    |(
-(
-		{
-			if ($current==null) {
-	            $current = createModelElement(grammarAccess.getCellValueRule());
-	        }
-        }
-		{ 
-	        newCompositeNode(grammarAccess.getCellValueAccess().getListlinkListVariableCrossReference_2_0()); 
-	    }
-		ruleListName		{ 
-	        afterParserOrEnumRuleCall();
-	    }
-
-)
-))
+))*)
 ;
 
 
@@ -2971,37 +2894,32 @@ ruleRobotText returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken
     { 
         afterParserOrEnumRuleCall();
     }
-(
-	kw=' ' 
-    {
-        $current.merge(kw);
-        newLeafNode(kw, grammarAccess.getRobotTextAccess().getSpaceKeyword_0_1()); 
-    }
-)?)?(    this_TEXT_2=RULE_TEXT    {
-		$current.merge(this_TEXT_2);
+
+    |    this_TEXT_1=RULE_TEXT    {
+		$current.merge(this_TEXT_1);
     }
 
     { 
-    newLeafNode(this_TEXT_2, grammarAccess.getRobotTextAccess().getTEXTTerminalRuleCall_1_0()); 
+    newLeafNode(this_TEXT_1, grammarAccess.getRobotTextAccess().getTEXTTerminalRuleCall_0_1()); 
     }
 
     |
     { 
-        newCompositeNode(grammarAccess.getRobotTextAccess().getReservedWordParserRuleCall_1_1()); 
+        newCompositeNode(grammarAccess.getRobotTextAccess().getReservedWordParserRuleCall_0_2()); 
     }
-    this_ReservedWord_3=ruleReservedWord    {
-		$current.merge(this_ReservedWord_3);
+    this_ReservedWord_2=ruleReservedWord    {
+		$current.merge(this_ReservedWord_2);
     }
 
     { 
         afterParserOrEnumRuleCall();
     }
-)(
+)+(
     { 
-        newCompositeNode(grammarAccess.getRobotTextAccess().getRobotTextPostfixParserRuleCall_2()); 
+        newCompositeNode(grammarAccess.getRobotTextAccess().getRobotTextPostfixParserRuleCall_1()); 
     }
-    this_RobotTextPostfix_4=ruleRobotTextPostfix    {
-		$current.merge(this_RobotTextPostfix_4);
+    this_RobotTextPostfix_3=ruleRobotTextPostfix    {
+		$current.merge(this_RobotTextPostfix_3);
     }
 
     { 
@@ -3079,16 +2997,15 @@ ruleRobotTextPostfix returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRu
     @init { enterRule(); 
     }
     @after { leaveRule(); }:
-((
+(
 	kw=' ' 
     {
         $current.merge(kw);
-        newLeafNode(kw, grammarAccess.getRobotTextPostfixAccess().getSpaceKeyword_0_0()); 
+        newLeafNode(kw, grammarAccess.getRobotTextPostfixAccess().getSpaceKeyword_0()); 
     }
-
-    |
+(
     { 
-        newCompositeNode(grammarAccess.getRobotTextPostfixAccess().getSpecialCharParserRuleCall_0_1()); 
+        newCompositeNode(grammarAccess.getRobotTextPostfixAccess().getSpecialCharParserRuleCall_1_0()); 
     }
     this_SpecialChar_1=ruleSpecialChar    {
 		$current.merge(this_SpecialChar_1);
@@ -3097,17 +3014,18 @@ ruleRobotTextPostfix returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRu
     { 
         afterParserOrEnumRuleCall();
     }
-)(    this_TEXT_2=RULE_TEXT    {
+
+    |    this_TEXT_2=RULE_TEXT    {
 		$current.merge(this_TEXT_2);
     }
 
     { 
-    newLeafNode(this_TEXT_2, grammarAccess.getRobotTextPostfixAccess().getTEXTTerminalRuleCall_1_0()); 
+    newLeafNode(this_TEXT_2, grammarAccess.getRobotTextPostfixAccess().getTEXTTerminalRuleCall_1_1()); 
     }
 
     |
     { 
-        newCompositeNode(grammarAccess.getRobotTextPostfixAccess().getReservedWordParserRuleCall_1_1()); 
+        newCompositeNode(grammarAccess.getRobotTextPostfixAccess().getReservedWordParserRuleCall_1_2()); 
     }
     this_ReservedWord_3=ruleReservedWord    {
 		$current.merge(this_ReservedWord_3);
@@ -3116,7 +3034,7 @@ ruleRobotTextPostfix returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRu
     { 
         afterParserOrEnumRuleCall();
     }
-))
+)+)
     ;
 
 
@@ -3327,6 +3245,27 @@ ruleSpecialChar returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleTok
     {
         $current.merge(kw);
         newLeafNode(kw, grammarAccess.getSpecialCharAccess().getEqualsSignKeyword_3()); 
+    }
+
+    |
+	kw='$' 
+    {
+        $current.merge(kw);
+        newLeafNode(kw, grammarAccess.getSpecialCharAccess().getDollarSignKeyword_4()); 
+    }
+
+    |
+	kw='@' 
+    {
+        $current.merge(kw);
+        newLeafNode(kw, grammarAccess.getSpecialCharAccess().getCommercialAtKeyword_5()); 
+    }
+
+    |
+	kw='{' 
+    {
+        $current.merge(kw);
+        newLeafNode(kw, grammarAccess.getSpecialCharAccess().getLeftCurlyBracketKeyword_6()); 
     }
 )
     ;

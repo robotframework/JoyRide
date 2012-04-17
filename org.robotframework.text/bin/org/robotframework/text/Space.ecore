@@ -96,18 +96,13 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="RobotStep">
     <eStructuralFeatures xsi:type="ecore:EReference" name="keyword" eType="#//Keyword"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="values" upperBound="-1"
-        eType="#//CellValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="values" unique="false"
+        upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ExecutingStep" eSuperTypes="#//RobotStep"/>
   <eClassifiers xsi:type="ecore:EClass" name="AssigningStep" eSuperTypes="#//RobotStep">
     <eStructuralFeatures xsi:type="ecore:EReference" name="vars" unique="false" upperBound="-1"
         eType="#//Variable"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="CellValue">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="f" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="scalarlink" eType="#//ScalarVariable"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="listlink" eType="#//ListVariable"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Values">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="val" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
