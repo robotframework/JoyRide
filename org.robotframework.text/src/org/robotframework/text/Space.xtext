@@ -41,13 +41,11 @@ Setting:
 
 TestCase:
 	name=MacroName
-	(NL SEPARATOR settings+=TestCaseSetting)*
-	(NL SEPARATOR steps+=RobotStep)+;
+	(NL SEPARATOR (settings+=TestCaseSetting | steps+=RobotStep))+;
 
 Keyword:
 	name=MacroName
-	(NL SEPARATOR settings+=KeywordSetting)*
-	(NL SEPARATOR steps+=RobotStep)+;
+	(NL SEPARATOR (settings+=KeywordSetting | steps+=RobotStep))+;
 
 Variable:
 	ScalarVariable | ListVariable
