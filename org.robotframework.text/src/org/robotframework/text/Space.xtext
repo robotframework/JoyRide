@@ -158,13 +158,16 @@ ListName:
 	'@' '{' RobotTextWithoutVariableName '}'
 ;
 
+VariableName: ScalarName | ListName;
+
 RobotText: RobotTextPart (' ' RobotTextPart)*;
 
-RobotTextPart: (SpecialChar | TEXT | ReservedWord | ScalarName | ListName)+;
+RobotTextPart: (RobotTextSubpartWithoutVariableName | VariableName)+;
 
 RobotTextWithoutVariableName: RobotTextPartWithoutVariableName (' ' RobotTextPartWithoutVariableName)*;
 
-RobotTextPartWithoutVariableName: (SpecialChar | TEXT | ReservedWord)+;
+RobotTextPartWithoutVariableName: RobotTextSubpartWithoutVariableName+;
+RobotTextSubpartWithoutVariableName: SpecialChar | TEXT | ReservedWord;
 
 MacroName: (TEXT | ReservedWord) (' ' RobotTextPart)*;
 
