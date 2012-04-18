@@ -2978,20 +2978,27 @@ ruleRobotTextPart returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleT
         afterParserOrEnumRuleCall();
     }
 
-    |    this_TEXT_1=RULE_TEXT    {
-		$current.merge(this_TEXT_1);
+    |
+	kw='{' 
+    {
+        $current.merge(kw);
+        newLeafNode(kw, grammarAccess.getRobotTextPartAccess().getLeftCurlyBracketKeyword_1()); 
+    }
+
+    |    this_TEXT_2=RULE_TEXT    {
+		$current.merge(this_TEXT_2);
     }
 
     { 
-    newLeafNode(this_TEXT_1, grammarAccess.getRobotTextPartAccess().getTEXTTerminalRuleCall_1()); 
+    newLeafNode(this_TEXT_2, grammarAccess.getRobotTextPartAccess().getTEXTTerminalRuleCall_2()); 
     }
 
     |
     { 
-        newCompositeNode(grammarAccess.getRobotTextPartAccess().getReservedWordParserRuleCall_2()); 
+        newCompositeNode(grammarAccess.getRobotTextPartAccess().getReservedWordParserRuleCall_3()); 
     }
-    this_ReservedWord_2=ruleReservedWord    {
-		$current.merge(this_ReservedWord_2);
+    this_ReservedWord_3=ruleReservedWord    {
+		$current.merge(this_ReservedWord_3);
     }
 
     { 
@@ -3000,10 +3007,10 @@ ruleRobotTextPart returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleT
 
     |
     { 
-        newCompositeNode(grammarAccess.getRobotTextPartAccess().getVariableNameParserRuleCall_3()); 
+        newCompositeNode(grammarAccess.getRobotTextPartAccess().getVariableNameParserRuleCall_4()); 
     }
-    this_VariableName_3=ruleVariableName    {
-		$current.merge(this_VariableName_3);
+    this_VariableName_4=ruleVariableName    {
+		$current.merge(this_VariableName_4);
     }
 
     { 
@@ -3079,9 +3086,9 @@ ruleRobotTextPartInVariableName returns [AntlrDatatypeRuleToken current=new Antl
     @init { enterRule(); 
     }
     @after { leaveRule(); }:
-(
+((
     { 
-        newCompositeNode(grammarAccess.getRobotTextPartInVariableNameAccess().getRobotTextSubpartInVariableNameParserRuleCall()); 
+        newCompositeNode(grammarAccess.getRobotTextPartInVariableNameAccess().getRobotTextSubpartInVariableNameParserRuleCall_0()); 
     }
     this_RobotTextSubpartInVariableName_0=ruleRobotTextSubpartInVariableName    {
 		$current.merge(this_RobotTextSubpartInVariableName_0);
@@ -3091,6 +3098,52 @@ ruleRobotTextPartInVariableName returns [AntlrDatatypeRuleToken current=new Antl
         afterParserOrEnumRuleCall();
     }
 )+
+    |((
+    { 
+        newCompositeNode(grammarAccess.getRobotTextPartInVariableNameAccess().getRobotTextSubpartInVariableNameParserRuleCall_1_0()); 
+    }
+    this_RobotTextSubpartInVariableName_1=ruleRobotTextSubpartInVariableName    {
+		$current.merge(this_RobotTextSubpartInVariableName_1);
+    }
+
+    { 
+        afterParserOrEnumRuleCall();
+    }
+)*(
+	kw='{' 
+    {
+        $current.merge(kw);
+        newLeafNode(kw, grammarAccess.getRobotTextPartInVariableNameAccess().getLeftCurlyBracketKeyword_1_1_0()); 
+    }
+(
+    { 
+        newCompositeNode(grammarAccess.getRobotTextPartInVariableNameAccess().getRobotTextSubpartInVariableNameParserRuleCall_1_1_1()); 
+    }
+    this_RobotTextSubpartInVariableName_3=ruleRobotTextSubpartInVariableName    {
+		$current.merge(this_RobotTextSubpartInVariableName_3);
+    }
+
+    { 
+        afterParserOrEnumRuleCall();
+    }
+)*
+	kw='}' 
+    {
+        $current.merge(kw);
+        newLeafNode(kw, grammarAccess.getRobotTextPartInVariableNameAccess().getRightCurlyBracketKeyword_1_1_2()); 
+    }
+(
+    { 
+        newCompositeNode(grammarAccess.getRobotTextPartInVariableNameAccess().getRobotTextSubpartInVariableNameParserRuleCall_1_1_3()); 
+    }
+    this_RobotTextSubpartInVariableName_5=ruleRobotTextSubpartInVariableName    {
+		$current.merge(this_RobotTextSubpartInVariableName_5);
+    }
+
+    { 
+        afterParserOrEnumRuleCall();
+    }
+)*)+))
     ;
 
 
@@ -3424,13 +3477,6 @@ ruleSpecialChar returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleTok
     {
         $current.merge(kw);
         newLeafNode(kw, grammarAccess.getSpecialCharAccess().getEqualsSignKeyword_3()); 
-    }
-
-    |
-	kw='{' 
-    {
-        $current.merge(kw);
-        newLeafNode(kw, grammarAccess.getSpecialCharAccess().getLeftCurlyBracketKeyword_4()); 
     }
 )
     ;

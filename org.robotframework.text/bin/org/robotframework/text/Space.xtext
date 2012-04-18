@@ -162,10 +162,12 @@ VariableName: ScalarName | ListName;
 
 RobotText: RobotTextPart (' ' RobotTextPart)*;
 
-RobotTextPart: (SpecialChar | TEXT | ReservedWord | VariableName)+;
+RobotTextPart: (SpecialChar | '{' | TEXT | ReservedWord | VariableName)+;
 
 RobotTextInVariableName: RobotTextPartInVariableName (' ' RobotTextPartInVariableName)*;
-RobotTextPartInVariableName: RobotTextSubpartInVariableName+;
+RobotTextPartInVariableName: RobotTextSubpartInVariableName+ |
+	(RobotTextSubpartInVariableName* ('{' RobotTextSubpartInVariableName* '}' RobotTextSubpartInVariableName*)+)
+;
 RobotTextSubpartInVariableName: SpecialChar | TEXT | ReservedWord | '$' | '@';
 
 MacroName: (TEXT | ReservedWord) (' ' RobotTextPart)*;
@@ -177,7 +179,7 @@ ReservedWord: TEST | CASES | SETTINGS |
 	          LIBRARY | RETURN | ARGUMENTS
 ;
 
-SpecialChar: '*'|'['|']'|'='|'{';
+SpecialChar: '*'|'['|']'|'=';
 
 terminal NL: ('\r'|'\n')+;
 
