@@ -162,7 +162,9 @@ RobotText: RobotTextPart (' ' RobotTextPart)*;
 
 RobotTextPart: (SpecialChar | TEXT | ReservedWord | ScalarName | ListName)+;
 
-RobotTextWithoutVariableName: (SpecialChar | TEXT | ReservedWord)+ (' ' (SpecialChar | TEXT | ReservedWord)+)*;
+RobotTextWithoutVariableName: RobotTextPartWithoutVariableName (' ' RobotTextPartWithoutVariableName)*;
+
+RobotTextPartWithoutVariableName: (SpecialChar | TEXT | ReservedWord)+;
 
 MacroName: (TEXT | ReservedWord) (' ' RobotTextPart)*;
 
