@@ -152,17 +152,21 @@ Values:
 	val=RobotText (SEPARATOR others+=RobotText)*;
 
 ScalarName:
-	'$' '{' RobotTextWithoutVariableName '}';
+	'$' '{' RobotTextInVariableName => '}';
 
 ListName:
-	'@' '{' RobotTextWithoutVariableName '}'
+	'@' '{' RobotTextInVariableName => '}'
 ;
+
+VariableName: ScalarName | ListName;
 
 RobotText: RobotTextPart (' ' RobotTextPart)*;
 
-RobotTextPart: (SpecialChar | TEXT | ReservedWord | ScalarName | ListName)+;
+RobotTextPart: (SpecialChar | TEXT | ReservedWord | VariableName)+;
 
-RobotTextWithoutVariableName: (SpecialChar | TEXT | ReservedWord)+ (' ' (SpecialChar | TEXT | ReservedWord)+)*;
+RobotTextInVariableName: RobotTextPartInVariableName (' ' RobotTextPartInVariableName)*;
+RobotTextPartInVariableName: RobotTextSubpartInVariableName+;
+RobotTextSubpartInVariableName: SpecialChar | TEXT | ReservedWord | '$' | '@';
 
 MacroName: (TEXT | ReservedWord) (' ' RobotTextPart)*;
 
