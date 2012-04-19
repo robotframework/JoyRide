@@ -1,8 +1,8 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: JoyRide
-Bundle-Vendor: Robot Framework
-Bundle-Version: 0.0.5
+Bundle-Vendor: Robot Framework Core Team
+Bundle-Version: 0.0.7
 Bundle-SymbolicName: org.robotframework.text.ui; singleton:=true
 Bundle-ActivationPolicy: lazy
 Require-Bundle: org.robotframework.text;visibility:=reexport,
@@ -19,7 +19,13 @@ Require-Bundle: org.robotframework.text;visibility:=reexport,
 Import-Package: org.apache.log4j,
  org.apache.commons.logging
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Export-Package: org.robotframework.text.ui.contentassist,
+Export-Package: org.robotframework.text.ui,
+ org.robotframework.text.ui.contentassist,
  org.robotframework.text.ui.contentassist.antlr,
- org.robotframework.text.ui.internal
+ org.robotframework.text.ui.contentassist.antlr.internal;x-internal:=true,
+ org.robotframework.text.ui.internal;x-internal:=true,
+ org.robotframework.text.ui.labeling,
+ org.robotframework.text.ui.outline,
+ org.robotframework.text.ui.quickfix,
+ org.robotframework.text.ui.syntaxcoloring
 Bundle-Activator: org.robotframework.text.ui.internal.SpaceActivator

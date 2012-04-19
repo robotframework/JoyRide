@@ -1,8 +1,8 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: JoyRide
-Bundle-Vendor: Robot Framework
-Bundle-Version: 0.0.5
+Bundle-Name: Robot Framework Space Text Parser
+Bundle-Vendor: Robot Framework Core Team
+Bundle-Version: 0.0.7
 Bundle-SymbolicName: org.robotframework.text; singleton:=true
 Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.xtext;bundle-version="2.1.0";visibility:=reexport,
