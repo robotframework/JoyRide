@@ -52,8 +52,14 @@
     <genClasses ecoreClass="Space.ecore#//TestCaseSetting">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Space.ecore#//TestCaseSetting/name"/>
     </genClasses>
-    <genClasses ecoreClass="Space.ecore#//SomeTestSetting">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Space.ecore#//SomeTestSetting/value"/>
+    <genClasses ecoreClass="Space.ecore#//DocumentationTestSetting">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Space.ecore#//DocumentationTestSetting/value"/>
+    </genClasses>
+    <genClasses ecoreClass="Space.ecore#//TemplateTestSetting">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Space.ecore#//TemplateTestSetting/value"/>
+    </genClasses>
+    <genClasses ecoreClass="Space.ecore#//TagsTestSetting">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Space.ecore#//TagsTestSetting/value"/>
     </genClasses>
     <genClasses ecoreClass="Space.ecore#//KeywordSetting">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Space.ecore#//KeywordSetting/setting"/>
@@ -63,6 +69,9 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Space.ecore#//ArgumentsSetting/args"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Space.ecore#//ArgumentsSetting/default_args"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Space.ecore#//ArgumentsSetting/defaults"/>
+    </genClasses>
+    <genClasses ecoreClass="Space.ecore#//TimeoutSetting">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Space.ecore#//TimeoutSetting/value"/>
     </genClasses>
     <genClasses ecoreClass="Space.ecore#//TeardownSetting">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Space.ecore#//TeardownSetting/step"/>

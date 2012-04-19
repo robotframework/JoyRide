@@ -60,20 +60,24 @@ ListVariable:
 ;
 
 TestCaseSetting:
-	SetupSetting | TeardownSetting | SomeTestSetting;
+	SetupSetting | TeardownSetting | TimeoutSetting | TagsTestSetting | TemplateTestSetting | DocumentationTestSetting;
 
-SomeTestSetting:
-	name=(DocumentationMacroSettingName |
-	TimeoutSettingName |
-	TagsTestSettingName |
-	TemplateTestSettingName) 
-	SEPARATOR value=Values;
+DocumentationTestSetting:
+	name=DocumentationMacroSettingName SEPARATOR value=Values;
+
+TemplateTestSetting:
+	name=TemplateTestSettingName (SEPARATOR value=Values)?
+;
+
+TagsTestSetting:
+	name=TagsTestSettingName (SEPARATOR value=Values)?
+;
 
 TagsTestSettingName: '['TAGS']';
 TemplateTestSettingName: '['TEMPLATE']';
 
 KeywordSetting:
-    setting=(ArgumentsSetting | TeardownSetting | SomeKeywordSetting);
+    setting=(ArgumentsSetting | TeardownSetting | TimeoutSetting | SomeKeywordSetting);
 
 ArgumentsSetting:
 	name=ArgumentsSettingName
@@ -83,20 +87,22 @@ ArgumentsSetting:
 
 ArgumentsSettingName: '[' ARGUMENTS ']';
 
+TimeoutSetting:
+	name=TimeoutSettingName (SEPARATOR value=Values)?;
+
 TeardownSetting:
-    name=TeardownSettingName SEPARATOR step=ExecutingStep
+    name=TeardownSettingName (SEPARATOR step=ExecutingStep)?
 ;
 
 TeardownSettingName: '['TEARDOWN']';
 
 SetupSetting:
-    name=SetupSettingName SEPARATOR step=ExecutingStep;
+    name=SetupSettingName (SEPARATOR step=ExecutingStep)?;
 
 SetupSettingName: '['SETUP']';
 
 SomeKeywordSetting:
 	name=(DocumentationMacroSettingName |
-	TimeoutSettingName |
 	ReturnKeywordSettingName) 
 	SEPARATOR 
 	value=Values;

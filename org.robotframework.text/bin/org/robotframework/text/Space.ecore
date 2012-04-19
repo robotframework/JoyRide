@@ -56,7 +56,15 @@
   <eClassifiers xsi:type="ecore:EClass" name="TestCaseSetting">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="SomeTestSetting" eSuperTypes="#//TestCaseSetting">
+  <eClassifiers xsi:type="ecore:EClass" name="DocumentationTestSetting" eSuperTypes="#//TestCaseSetting">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="#//Values"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TemplateTestSetting" eSuperTypes="#//TestCaseSetting">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="#//Values"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TagsTestSetting" eSuperTypes="#//TestCaseSetting">
     <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="#//Values"
         containment="true"/>
   </eClassifiers>
@@ -72,6 +80,10 @@
         upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="defaults" unique="false"
         upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TimeoutSetting" eSuperTypes="#//TestCaseSetting">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="#//Values"
+        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TeardownSetting" eSuperTypes="#//TestCaseSetting">
     <eStructuralFeatures xsi:type="ecore:EReference" name="step" eType="#//ExecutingStep"

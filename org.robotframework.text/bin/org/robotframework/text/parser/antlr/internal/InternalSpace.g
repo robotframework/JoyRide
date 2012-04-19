@@ -1037,11 +1037,41 @@ ruleTestCaseSetting returns [EObject current=null]
 
     |
     { 
-        newCompositeNode(grammarAccess.getTestCaseSettingAccess().getSomeTestSettingParserRuleCall_2()); 
+        newCompositeNode(grammarAccess.getTestCaseSettingAccess().getTimeoutSettingParserRuleCall_2()); 
     }
-    this_SomeTestSetting_2=ruleSomeTestSetting
+    this_TimeoutSetting_2=ruleTimeoutSetting
     { 
-        $current = $this_SomeTestSetting_2.current; 
+        $current = $this_TimeoutSetting_2.current; 
+        afterParserOrEnumRuleCall();
+    }
+
+    |
+    { 
+        newCompositeNode(grammarAccess.getTestCaseSettingAccess().getTagsTestSettingParserRuleCall_3()); 
+    }
+    this_TagsTestSetting_3=ruleTagsTestSetting
+    { 
+        $current = $this_TagsTestSetting_3.current; 
+        afterParserOrEnumRuleCall();
+    }
+
+    |
+    { 
+        newCompositeNode(grammarAccess.getTestCaseSettingAccess().getTemplateTestSettingParserRuleCall_4()); 
+    }
+    this_TemplateTestSetting_4=ruleTemplateTestSetting
+    { 
+        $current = $this_TemplateTestSetting_4.current; 
+        afterParserOrEnumRuleCall();
+    }
+
+    |
+    { 
+        newCompositeNode(grammarAccess.getTestCaseSettingAccess().getDocumentationTestSettingParserRuleCall_5()); 
+    }
+    this_DocumentationTestSetting_5=ruleDocumentationTestSetting
+    { 
+        $current = $this_DocumentationTestSetting_5.current; 
         afterParserOrEnumRuleCall();
     }
 )
@@ -1051,98 +1081,50 @@ ruleTestCaseSetting returns [EObject current=null]
 
 
 
-// Entry rule entryRuleSomeTestSetting
-entryRuleSomeTestSetting returns [EObject current=null] 
+// Entry rule entryRuleDocumentationTestSetting
+entryRuleDocumentationTestSetting returns [EObject current=null] 
 	:
-	{ newCompositeNode(grammarAccess.getSomeTestSettingRule()); }
-	 iv_ruleSomeTestSetting=ruleSomeTestSetting 
-	 { $current=$iv_ruleSomeTestSetting.current; } 
+	{ newCompositeNode(grammarAccess.getDocumentationTestSettingRule()); }
+	 iv_ruleDocumentationTestSetting=ruleDocumentationTestSetting 
+	 { $current=$iv_ruleDocumentationTestSetting.current; } 
 	 EOF 
 ;
 
-// Rule SomeTestSetting
-ruleSomeTestSetting returns [EObject current=null] 
+// Rule DocumentationTestSetting
+ruleDocumentationTestSetting returns [EObject current=null] 
     @init { enterRule(); 
     }
     @after { leaveRule(); }:
 ((
 (
-(
 		{ 
-	        newCompositeNode(grammarAccess.getSomeTestSettingAccess().getNameDocumentationMacroSettingNameParserRuleCall_0_0_0()); 
+	        newCompositeNode(grammarAccess.getDocumentationTestSettingAccess().getNameDocumentationMacroSettingNameParserRuleCall_0_0()); 
 	    }
-		lv_name_0_1=ruleDocumentationMacroSettingName		{
+		lv_name_0_0=ruleDocumentationMacroSettingName		{
 	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getSomeTestSettingRule());
+	            $current = createModelElementForParent(grammarAccess.getDocumentationTestSettingRule());
 	        }
        		set(
        			$current, 
        			"name",
-        		lv_name_0_1, 
+        		lv_name_0_0, 
         		"DocumentationMacroSettingName");
 	        afterParserOrEnumRuleCall();
 	    }
 
-    |		{ 
-	        newCompositeNode(grammarAccess.getSomeTestSettingAccess().getNameTimeoutSettingNameParserRuleCall_0_0_1()); 
-	    }
-		lv_name_0_2=ruleTimeoutSettingName		{
-	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getSomeTestSettingRule());
-	        }
-       		set(
-       			$current, 
-       			"name",
-        		lv_name_0_2, 
-        		"TimeoutSettingName");
-	        afterParserOrEnumRuleCall();
-	    }
-
-    |		{ 
-	        newCompositeNode(grammarAccess.getSomeTestSettingAccess().getNameTagsTestSettingNameParserRuleCall_0_0_2()); 
-	    }
-		lv_name_0_3=ruleTagsTestSettingName		{
-	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getSomeTestSettingRule());
-	        }
-       		set(
-       			$current, 
-       			"name",
-        		lv_name_0_3, 
-        		"TagsTestSettingName");
-	        afterParserOrEnumRuleCall();
-	    }
-
-    |		{ 
-	        newCompositeNode(grammarAccess.getSomeTestSettingAccess().getNameTemplateTestSettingNameParserRuleCall_0_0_3()); 
-	    }
-		lv_name_0_4=ruleTemplateTestSettingName		{
-	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getSomeTestSettingRule());
-	        }
-       		set(
-       			$current, 
-       			"name",
-        		lv_name_0_4, 
-        		"TemplateTestSettingName");
-	        afterParserOrEnumRuleCall();
-	    }
-
-)
-
 )
 )this_SEPARATOR_1=RULE_SEPARATOR
     { 
-    newLeafNode(this_SEPARATOR_1, grammarAccess.getSomeTestSettingAccess().getSEPARATORTerminalRuleCall_1()); 
+    newLeafNode(this_SEPARATOR_1, grammarAccess.getDocumentationTestSettingAccess().getSEPARATORTerminalRuleCall_1()); 
     }
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getSomeTestSettingAccess().getValueValuesParserRuleCall_2_0()); 
+	        newCompositeNode(grammarAccess.getDocumentationTestSettingAccess().getValueValuesParserRuleCall_2_0()); 
 	    }
 		lv_value_2_0=ruleValues		{
 	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getSomeTestSettingRule());
+	            $current = createModelElementForParent(grammarAccess.getDocumentationTestSettingRule());
 	        }
        		set(
        			$current, 
@@ -1154,6 +1136,128 @@ ruleSomeTestSetting returns [EObject current=null]
 
 )
 ))
+;
+
+
+
+
+
+// Entry rule entryRuleTemplateTestSetting
+entryRuleTemplateTestSetting returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getTemplateTestSettingRule()); }
+	 iv_ruleTemplateTestSetting=ruleTemplateTestSetting 
+	 { $current=$iv_ruleTemplateTestSetting.current; } 
+	 EOF 
+;
+
+// Rule TemplateTestSetting
+ruleTemplateTestSetting returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+((
+(
+		{ 
+	        newCompositeNode(grammarAccess.getTemplateTestSettingAccess().getNameTemplateTestSettingNameParserRuleCall_0_0()); 
+	    }
+		lv_name_0_0=ruleTemplateTestSettingName		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getTemplateTestSettingRule());
+	        }
+       		set(
+       			$current, 
+       			"name",
+        		lv_name_0_0, 
+        		"TemplateTestSettingName");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)(this_SEPARATOR_1=RULE_SEPARATOR
+    { 
+    newLeafNode(this_SEPARATOR_1, grammarAccess.getTemplateTestSettingAccess().getSEPARATORTerminalRuleCall_1_0()); 
+    }
+(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getTemplateTestSettingAccess().getValueValuesParserRuleCall_1_1_0()); 
+	    }
+		lv_value_2_0=ruleValues		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getTemplateTestSettingRule());
+	        }
+       		set(
+       			$current, 
+       			"value",
+        		lv_value_2_0, 
+        		"Values");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+))?)
+;
+
+
+
+
+
+// Entry rule entryRuleTagsTestSetting
+entryRuleTagsTestSetting returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getTagsTestSettingRule()); }
+	 iv_ruleTagsTestSetting=ruleTagsTestSetting 
+	 { $current=$iv_ruleTagsTestSetting.current; } 
+	 EOF 
+;
+
+// Rule TagsTestSetting
+ruleTagsTestSetting returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+((
+(
+		{ 
+	        newCompositeNode(grammarAccess.getTagsTestSettingAccess().getNameTagsTestSettingNameParserRuleCall_0_0()); 
+	    }
+		lv_name_0_0=ruleTagsTestSettingName		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getTagsTestSettingRule());
+	        }
+       		set(
+       			$current, 
+       			"name",
+        		lv_name_0_0, 
+        		"TagsTestSettingName");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)(this_SEPARATOR_1=RULE_SEPARATOR
+    { 
+    newLeafNode(this_SEPARATOR_1, grammarAccess.getTagsTestSettingAccess().getSEPARATORTerminalRuleCall_1_0()); 
+    }
+(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getTagsTestSettingAccess().getValueValuesParserRuleCall_1_1_0()); 
+	    }
+		lv_value_2_0=ruleValues		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getTagsTestSettingRule());
+	        }
+       		set(
+       			$current, 
+       			"value",
+        		lv_value_2_0, 
+        		"Values");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+))?)
 ;
 
 
@@ -1288,9 +1392,9 @@ ruleKeywordSetting returns [EObject current=null]
 	    }
 
     |		{ 
-	        newCompositeNode(grammarAccess.getKeywordSettingAccess().getSettingSomeKeywordSettingParserRuleCall_0_2()); 
+	        newCompositeNode(grammarAccess.getKeywordSettingAccess().getSettingTimeoutSettingParserRuleCall_0_2()); 
 	    }
-		lv_setting_0_3=ruleSomeKeywordSetting		{
+		lv_setting_0_3=ruleTimeoutSetting		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getKeywordSettingRule());
 	        }
@@ -1298,6 +1402,21 @@ ruleKeywordSetting returns [EObject current=null]
        			$current, 
        			"setting",
         		lv_setting_0_3, 
+        		"TimeoutSetting");
+	        afterParserOrEnumRuleCall();
+	    }
+
+    |		{ 
+	        newCompositeNode(grammarAccess.getKeywordSettingAccess().getSettingSomeKeywordSettingParserRuleCall_0_3()); 
+	    }
+		lv_setting_0_4=ruleSomeKeywordSetting		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getKeywordSettingRule());
+	        }
+       		set(
+       			$current, 
+       			"setting",
+        		lv_setting_0_4, 
         		"SomeKeywordSetting");
 	        afterParserOrEnumRuleCall();
 	    }
@@ -1469,6 +1588,67 @@ ruleArgumentsSettingName returns [AntlrDatatypeRuleToken current=new AntlrDataty
 
 
 
+// Entry rule entryRuleTimeoutSetting
+entryRuleTimeoutSetting returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getTimeoutSettingRule()); }
+	 iv_ruleTimeoutSetting=ruleTimeoutSetting 
+	 { $current=$iv_ruleTimeoutSetting.current; } 
+	 EOF 
+;
+
+// Rule TimeoutSetting
+ruleTimeoutSetting returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+((
+(
+		{ 
+	        newCompositeNode(grammarAccess.getTimeoutSettingAccess().getNameTimeoutSettingNameParserRuleCall_0_0()); 
+	    }
+		lv_name_0_0=ruleTimeoutSettingName		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getTimeoutSettingRule());
+	        }
+       		set(
+       			$current, 
+       			"name",
+        		lv_name_0_0, 
+        		"TimeoutSettingName");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)(this_SEPARATOR_1=RULE_SEPARATOR
+    { 
+    newLeafNode(this_SEPARATOR_1, grammarAccess.getTimeoutSettingAccess().getSEPARATORTerminalRuleCall_1_0()); 
+    }
+(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getTimeoutSettingAccess().getValueValuesParserRuleCall_1_1_0()); 
+	    }
+		lv_value_2_0=ruleValues		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getTimeoutSettingRule());
+	        }
+       		set(
+       			$current, 
+       			"value",
+        		lv_value_2_0, 
+        		"Values");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+))?)
+;
+
+
+
+
+
 // Entry rule entryRuleTeardownSetting
 entryRuleTeardownSetting returns [EObject current=null] 
 	:
@@ -1501,14 +1681,14 @@ ruleTeardownSetting returns [EObject current=null]
 	    }
 
 )
-)this_SEPARATOR_1=RULE_SEPARATOR
+)(this_SEPARATOR_1=RULE_SEPARATOR
     { 
-    newLeafNode(this_SEPARATOR_1, grammarAccess.getTeardownSettingAccess().getSEPARATORTerminalRuleCall_1()); 
+    newLeafNode(this_SEPARATOR_1, grammarAccess.getTeardownSettingAccess().getSEPARATORTerminalRuleCall_1_0()); 
     }
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getTeardownSettingAccess().getStepExecutingStepParserRuleCall_2_0()); 
+	        newCompositeNode(grammarAccess.getTeardownSettingAccess().getStepExecutingStepParserRuleCall_1_1_0()); 
 	    }
 		lv_step_2_0=ruleExecutingStep		{
 	        if ($current==null) {
@@ -1523,7 +1703,7 @@ ruleTeardownSetting returns [EObject current=null]
 	    }
 
 )
-))
+))?)
 ;
 
 
@@ -1602,14 +1782,14 @@ ruleSetupSetting returns [EObject current=null]
 	    }
 
 )
-)this_SEPARATOR_1=RULE_SEPARATOR
+)(this_SEPARATOR_1=RULE_SEPARATOR
     { 
-    newLeafNode(this_SEPARATOR_1, grammarAccess.getSetupSettingAccess().getSEPARATORTerminalRuleCall_1()); 
+    newLeafNode(this_SEPARATOR_1, grammarAccess.getSetupSettingAccess().getSEPARATORTerminalRuleCall_1_0()); 
     }
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getSetupSettingAccess().getStepExecutingStepParserRuleCall_2_0()); 
+	        newCompositeNode(grammarAccess.getSetupSettingAccess().getStepExecutingStepParserRuleCall_1_1_0()); 
 	    }
 		lv_step_2_0=ruleExecutingStep		{
 	        if ($current==null) {
@@ -1624,7 +1804,7 @@ ruleSetupSetting returns [EObject current=null]
 	    }
 
 )
-))
+))?)
 ;
 
 
@@ -1704,9 +1884,9 @@ ruleSomeKeywordSetting returns [EObject current=null]
 	    }
 
     |		{ 
-	        newCompositeNode(grammarAccess.getSomeKeywordSettingAccess().getNameTimeoutSettingNameParserRuleCall_0_0_1()); 
+	        newCompositeNode(grammarAccess.getSomeKeywordSettingAccess().getNameReturnKeywordSettingNameParserRuleCall_0_0_1()); 
 	    }
-		lv_name_0_2=ruleTimeoutSettingName		{
+		lv_name_0_2=ruleReturnKeywordSettingName		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getSomeKeywordSettingRule());
 	        }
@@ -1714,21 +1894,6 @@ ruleSomeKeywordSetting returns [EObject current=null]
        			$current, 
        			"name",
         		lv_name_0_2, 
-        		"TimeoutSettingName");
-	        afterParserOrEnumRuleCall();
-	    }
-
-    |		{ 
-	        newCompositeNode(grammarAccess.getSomeKeywordSettingAccess().getNameReturnKeywordSettingNameParserRuleCall_0_0_2()); 
-	    }
-		lv_name_0_3=ruleReturnKeywordSettingName		{
-	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getSomeKeywordSettingRule());
-	        }
-       		set(
-       			$current, 
-       			"name",
-        		lv_name_0_3, 
         		"ReturnKeywordSettingName");
 	        afterParserOrEnumRuleCall();
 	    }
