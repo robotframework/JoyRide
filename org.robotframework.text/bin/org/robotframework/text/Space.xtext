@@ -14,25 +14,25 @@ RobotTable:
 
 SettingsTable:
 	header=SettingsTableHeader
-	(NL settings+=Setting)+;
+	(NL+ settings+=Setting)+;
 
 SettingsTableHeader: '*'+ ' ' SETTINGS ' ' '*'+;
 
 TestCaseTable:
 	header=TestCaseTableHeader
-	(NL tests+=TestCase)+;
+	(NL+ tests+=TestCase)+;
 
 TestCaseTableHeader: '*'+ ' ' TEST ' ' CASES ' ' '*'+;
 
 KeywordTable:
 	header=KeywordTableHeader
-	(NL keywords+=Keyword)+;
+	(NL+ keywords+=Keyword)+;
 
 KeywordTableHeader:	'*'+ ' ' KEYWORDS ' ' '*'+;
 
 VariablesTable:
 	header=VariablesTableHeader
-	(NL variables+=Variable)+;
+	(NL+ variables+=Variable)+;
 
 VariablesTableHeader: '*'+ ' ' VARIABLES ' ' '*'+;
 
@@ -41,11 +41,11 @@ Setting:
 
 TestCase:
 	name=MacroName
-	(NL SEPARATOR (settings+=TestCaseSetting | steps+=RobotStep))+;
+	(NL+ SEPARATOR (settings+=TestCaseSetting | steps+=RobotStep))+;
 
 Keyword:
 	name=MacroName
-	(NL SEPARATOR (settings+=KeywordSetting | steps+=RobotStep))+;
+	(NL+ SEPARATOR (settings+=KeywordSetting | steps+=RobotStep))+;
 
 Variable:
 	ScalarVariable | ListVariable
@@ -170,7 +170,8 @@ RobotTextPartInVariableName: RobotTextSubpartInVariableName+ |
 ;
 RobotTextSubpartInVariableName: SpecialChar | TEXT | ReservedWord | '$' | '@';
 
-MacroName: (TEXT | ReservedWord) (' ' RobotTextPart)*;
+MacroName: MacroNamePart (' ' MacroNamePart)*;
+MacroNamePart: (TEXT | ReservedWord | '$' | '@')+;
 
 ReservedWord: TEST | CASES | SETTINGS | 
 	          KEYWORDS | VARIABLES | SUITE | SETUP |
