@@ -7,7 +7,7 @@ To install you'll need:
 
 What Does this plugin offer:
   * Syntax highlighting
-  * Autocompletion
+  * Autocompletion (including BuiltIn keywords)
   * Go to keyword definition and rename (when in same file) 
   * Outline
   * Error checking
