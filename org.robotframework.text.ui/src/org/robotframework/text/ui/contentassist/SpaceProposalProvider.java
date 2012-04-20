@@ -167,9 +167,22 @@ public class SpaceProposalProvider extends AbstractSpaceProposalProvider {
 			Assignment assignment, ContentAssistContext context,
 			ICompletionProposalAcceptor acceptor) {
 		super.completeExecutingStep_Keyword(model, assignment, context, acceptor);
+		addBuiltInKeywords(context, acceptor);
+	}
+
+	private void addBuiltInKeywords(ContentAssistContext context,
+			ICompletionProposalAcceptor acceptor) {
 		for(String kw: BUILTIN_KEYWORDS){
 			acceptor.accept(createCompletionProposal(kw+"  ", context));
 		}
+	}
+	
+	@Override
+	public void completeAssigningStep_Keyword(EObject model,
+			Assignment assignment, ContentAssistContext context,
+			ICompletionProposalAcceptor acceptor) {
+		super.completeAssigningStep_Keyword(model, assignment, context, acceptor);
+		addBuiltInKeywords(context, acceptor);
 	}
 	
 	@Override
