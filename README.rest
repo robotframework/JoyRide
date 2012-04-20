@@ -12,3 +12,5 @@ What Does this plugin offer:
   * Outline
   * Error checking
 
+Note!
+  Currently unable to open files that are not inside of an eclipse project.
