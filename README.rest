@@ -1,5 +1,8 @@
 Robot Framework space separated test syntax editor plugin for Eclipse.
 
+NOTE! This is an experimental implementation.
+Please check https://github.com/NitorCreations/RobotFramework-EclipseIDE/wiki for a more complete implementation.
+
 To install you'll need:
   * `Eclipse Indigo <http://www.eclipse.org/downloads/>`_
   * `xText plugin <http://www.eclipse.org/Xtext/download/>`_
